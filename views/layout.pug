@@ -9,7 +9,8 @@ html
     body
         header.header
             div.pad-l-r.clear.max-width
-                h1.main-title.left 聆听的博客
+                a(href='/',title='首页')
+                    h1.main-title.left 聆听的博客
                 nav.nav.right
                     div.pc
                         a.nav-btn(href='http://www.baidu.com') 首页
@@ -52,10 +53,10 @@ html
                         a(href='http://www.baidu.com') 关于我
         div.main-container.max-width
             main.left.main
-                div(style="background:red")
+                div(style="background:red" )
                     block content
             aside.left.aside(style="background:green")
-                block content
+                block aside
         footer.footer.clear
             div.max-width.pad-l-r
                 a(href="http://www.baidu.com") 链接
