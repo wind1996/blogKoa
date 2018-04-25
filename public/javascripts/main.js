@@ -10,3 +10,46 @@ document.querySelector('#menu-bind-js').addEventListener('click', function () {
         ele_btn.className += ' active'
     }
 });
+var flag, num1
+window.onscroll = function () {
+    if (!(document.body.scrollTop || document.documentElement.scrollTop)) {
+        console.log('在顶了')
+        f(1,'#footer-bind')
+
+    }
+    if (flag) {
+        return;
+    }
+    num1 = document.body.scrollTop || document.documentElement.scrollTop;
+    flag = setTimeout(function () {
+        var cha = document.body.scrollTop || document.documentElement.scrollTop - num1
+        if (cha > 50) {
+            // console.log('向下滚动')
+            f(0,'#header-bind')
+            f(1,'#footer-bind')
+        }
+        if (cha < -50) {
+            // console.log('向上滚动')
+            f(1,'#header-bind')
+            f(0,'#footer-bind')
+        }
+        flag = null;
+    }, 100)
+};
+
+function f(num,ele) {
+    var ele = document.querySelector(ele)
+    var cName = ele.className;
+    var flag = /\sshow/.test(cName)
+    if (num) {
+        // console.log('添加')
+        if (!flag) {
+            ele.className += ' show';
+        }
+    } else {
+        // console.log('删除')
+        if (flag) {
+            ele.className = ele.className.replace(/\sshow/, '');
+        }
+    }
+}

@@ -1,7 +1,7 @@
 :root {
     --header-bg-color: #fff;
     --mian-bg-color: #fff;
-    --footer-bg-color: rgba(234, 234, 234, 0.21);
+    --footer-bg-color: rgba(12, 6, 6, 0.25);
     --max-width: 1300px;
 }
 
@@ -11,7 +11,7 @@ body {
     margin: 0;
 }
 
-ul {
+ul, ol {
     padding-left: 0;
     margin: 0;
     text-align: left;
@@ -19,6 +19,10 @@ ul {
 
 ul li {
     list-style: none;
+}
+
+.inline-block {
+    display: inline-block;
 }
 
 /*公共样式*/
@@ -59,6 +63,13 @@ a:hover {
     border-radius: 4px;
 }
 
+.middle-card {
+    margin: 10px;
+    padding: 5px;
+    border: 1px solid #5973ff;
+    border-radius: 4px;
+}
+
 .max-width {
     max-width: var(--max-width);
     margin: 0 auto;
@@ -68,10 +79,16 @@ a:hover {
 .header {
     background: var(--header-bg-color);
     box-shadow: 0 0 2px 1px #00000042;
-    position: absolute;
+    position: fixed;
     left: 0;
     right: 0;
+    top: -50px;
+    transition: top .5s;
+}
+
+.header.show {
     top: 0;
+    transition: top .5s;
 }
 
 /*大标题*/
@@ -79,6 +96,21 @@ a:hover {
     font-size: 19px;
     margin: 10px;
     color: #000;
+}
+
+/*副标题*/
+.sub-title {
+    font-size: 16px;
+    margin-left: 10px;
+    border-bottom: 1px solid red;
+    margin-bottom: 0;
+}
+
+.aside-title {
+    font-size: 16px;
+    margin-left: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.44);
+    margin-bottom: 0;
 }
 
 /*导航部分*/
@@ -302,12 +334,30 @@ a:hover {
 }
 
 /*底部样式*/
-.footer {
-    background: var(--footer-bg-color);
+
+.footer .pc {
     height: 40px;
+    background: var(--footer-bg-color);
 }
 
-.footer div {
+.footer .mobile {
+    background: var(--header-bg-color);
+    height: 40px;
+    display: none;
+    box-shadow: 0 0 2px 1px #00000042;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: -40px;
+    transition: bottom .5s;
+}
+
+.footer .mobile.show {
+    bottom: 0;
+    transition: bottom .5s;
+}
+
+.footer .pc {
     text-align: right;
     line-height: 40px;
 }
@@ -327,7 +377,7 @@ a:hover {
     }
 }
 
-/*手机电脑导航栏切换*/
+/*手机电脑导航栏,footer切换*/
 @media screen and (max-width: 500px) {
     .nav .pc {
         display: none;
@@ -337,11 +387,93 @@ a:hover {
         display: inline-block;
     }
 
-    .footer {
+    .footer .pc {
         display: none;
+    }
+
+    .footer .mobile {
+        display: block;
     }
 
     .main-container {
         min-height: calc(100vh - 50px);
     }
+
+    .max-width.main-container {
+        margin-bottom: 50px;
+    }
 }
+
+/*卡片的响应式*/
+.col-card-little-auto, .col-card-middle-auto {
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+@media screen and (min-width: 450px) {
+    .col-card-little-auto {
+        width: 50%;
+    }
+}
+
+@media screen and (min-width: 650px) {
+    .col-card-little-auto {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 750px) {
+    .col-card-little-auto {
+        width: 50%;
+    }
+}
+
+@media screen and (min-width: 950px) {
+    .col-card-little-auto {
+        width: 33.33333333%;
+    }
+
+    .col-card-middle-auto {
+        width: 50%;
+    }
+}
+
+@media screen and (min-width: 1100px) {
+    .col-card-little-auto {
+        width: 25%;
+    }
+}
+
+/*首页侧边栏*/
+.aside-list li:before {
+    content: "\00BB \0020";
+}
+
+.aside-list.limit-height {
+    overflow: hidden;
+    max-height: 50px;
+}
+
+.aside-list.limit-height.active {
+    max-height: 500px;
+    transition: max-height 1s;
+}
+
+/*
+.aside-list li {
+    list-style: circle;
+    margin: 5px 0 5px 20px;
+    text-align: justify;
+    font-size: 0;
+}
+
+.aside-list li > span {
+    font-size: 1rem;
+}
+
+.aside-list li:after {
+    content: '';
+    display: inline-table;
+    width: 100%;
+}*/
