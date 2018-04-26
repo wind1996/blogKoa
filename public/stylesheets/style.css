@@ -402,7 +402,7 @@ a:hover {
 }
 
 /*媒体查询隐藏侧边栏*/
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 1100px) {
     .main > div {
         margin-right: 0;
     }
@@ -447,7 +447,7 @@ a:hover {
     vertical-align: top;
 }
 
-@media screen and (min-width: 450px) {
+@media screen and (min-width: 550px) {
     .col-card-little-auto {
         width: 50%;
     }
@@ -455,17 +455,17 @@ a:hover {
 
 @media screen and (min-width: 650px) {
     .col-card-little-auto {
-        width: 100%;
+        /*width: 100%;*/
     }
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 900px) {
     .col-card-little-auto {
         width: 50%;
     }
 }
 
-@media screen and (min-width: 950px) {
+@media screen and (min-width: 900px) {
     .col-card-little-auto {
         width: 33.33333333%;
     }
@@ -475,11 +475,11 @@ a:hover {
     }
 }
 
-@media screen and (min-width: 1100px) {
+/*@media screen and (min-width: 1100px) {
     .col-card-little-auto {
         width: 25%;
     }
-}
+}*/
 
 /*首页侧边栏*/
 .aside-list li:before {
