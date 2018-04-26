@@ -10,8 +10,28 @@ document.querySelector('#menu-bind-js').addEventListener('click', function () {
         ele_btn.className += ' active'
     }
 });
+
+var a = null;
+
+function f2() {
+    if (a) return
+    var ht = document.querySelector('html')
+    var cName = ht.className;
+    var flag = /hidden-scroll/.test(cName)
+    if (flag) {
+        ht.className = ht.className.replace(/hidden-scroll/, '');
+        console.log('add name')
+    }
+    a = setTimeout(() => {
+        ht.className += ' hidden-scroll';
+        console.log('clear name')
+        a = null;
+    }, 1500)
+}
+
 var flag, num1
 window.onscroll = function () {
+    f2();
     if (!(document.body.scrollTop || document.documentElement.scrollTop)) {
         console.log('在顶了')
         f(1, '#footer-bind')
@@ -53,6 +73,7 @@ function f(num, ele) {
         }
     }
 }
+
 
 window.onresize = function () {
     var ele = document.querySelector('#header-bind');

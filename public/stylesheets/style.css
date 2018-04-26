@@ -3,10 +3,14 @@
     --mian-bg-color: #fff;
     --footer-bg-color: rgba(12, 6, 6, 0.25);
     --max-width: 1300px;
+    --scroll-width: 4px;
+    margin-right: calc(0px - var(--scroll-width));
+    padding-right: var(--scroll-width);
+    overflow-x: hidden;
 }
 
 html::-webkit-scrollbar { /*滚动条整体部分，其中的属性有width,height,background,border等（就和一个块级元素一样）（位置1）*/
-    width: 5px;
+    width: var(--scroll-width);
     height: 10px;
 }
 
@@ -27,6 +31,13 @@ html::-webkit-scrollbar-track-piece { /*内层轨道，滚动条中间部分（�
 html::-webkit-scrollbar-thumb { /*滚动条里面可以拖动的那部分（位置5）*/
     background: #0000004f;;
     border-radius: 4px;
+    transition: all 4s;
+}
+
+html.hidden-scroll::-webkit-scrollbar-thumb { /*滚动条里面可以拖动的那部分（位置5）*/
+    background: rgba(0, 0, 0, 0);;
+    border-radius: 4px;
+    transition: all 4s;
 }
 
 html::-webkit-scrollbar-corner { /*边角（位置6）*/
@@ -112,7 +123,7 @@ a:hover {
     box-shadow: 0 0 2px 1px #00000042;
     position: fixed;
     left: 0;
-    right: 0;
+    right: calc(0px - var(--scroll-width));
     top: -50px;
     transition: top .5s;
     z-index: 1;
@@ -369,6 +380,7 @@ a:hover {
 
 .footer {
     background: var(--footer-bg-color);
+    margin-right: calc(0px - var(--scroll-width));
 }
 
 .footer .pc {
@@ -382,7 +394,7 @@ a:hover {
     box-shadow: 0 0 2px 1px #00000042;
     position: fixed;
     left: 0;
-    right: 0;
+    right: calc(0px - var(--scroll-width));
     bottom: -40px;
     transition: bottom .5s;
 }
