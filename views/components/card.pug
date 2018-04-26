@@ -1,0 +1,15 @@
+mixin main-card(item)
+    div.main-card-effect
+        a(href=`${item.href}`)
+            if item.count
+                div.card-count= `浏览量:${item.count}`
+            div.card-bg-container
+                div.card-bg-img(alt='背景图' style=item.bg ? `background-image: url("${item.bg}")`: 'background-image: url("http://h1.ioliu.cn//bing/NewOldBridge_EN-AU12192409966_1920x1080.jpg")')
+            div.card-content
+                h2.card-content-title= item.title
+                div.card-content-detail= item.content
+                ul.card-content-category
+                    if item.category
+                        each value in item.category
+                            li
+                                a(href=`${value.href}`)=value.name

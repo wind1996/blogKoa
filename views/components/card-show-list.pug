@@ -1,0 +1,9 @@
+mixin card-show-list(item)
+    div.card-show-list(style=item.bg ? `background-image: url("${item.bg}")`: '')
+        if  item.title
+            a(href='#')
+                h2.show-title(style=item.bg ? 'background:#ffffffa6': '')= item.title
+        ul.show-list(style=item.bg ? 'background:#ffffffa6': '')
+            each value in item.list
+                li
+                    a(href=`${value.href}`)=value.name
