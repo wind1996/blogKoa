@@ -1,63 +1,7 @@
-doctype html
-html
-    head
-        title= title
-        meta(charset='utf-8')
-        meta(name='Description',content='boke')
-        meta(name='viewport',content='width=device-width,initial-scale=1')
-        link(rel='stylesheet', href='/stylesheets/style.css')
-    body
-        header.header.show#header-bind
-            div.pad-l-r.clear.max-width
-                a(href='/',title='首页')
-                    h1.main-title.left 聆听的博客
-                nav.nav.right
-                    div.pc
-                        a.nav-btn(href='http://www.baidu.com') 首页
-                        a.nav-btn(href='http://www.baidu.com') 原创
-                            ul.pc-sec-menu.white-card
-                                li.pad-l-r 开发
-                                li.pad-l-r 生活
-                        a.nav-btn(href='http://www.baidu.com') 转载
-                            ul.pc-sec-menu.white-card
-                                li.pad-l-r 前端
-                                li.pad-l-r 后端
-                                li.pad-l-r 数据库
-                                li.pad-l-r 其他
-                        a.nav-btn(href='http://www.baidu.com') 实验室
-                        a.nav-btn(href='http://www.baidu.com') 资源工具
-                            ul.pc-sec-menu.white-card
-                                li.pad-l-r 开发
-                                li.pad-l-r 办公
-                                li.pad-l-r 娱乐
-                                li.pad-l-r 其他
-                    div.mobile
-                        div.menu-btn#menu-bind-js
-                            i.menu-btn-top-line
-                            i.menu-btn-middle-line
-                            i.menu-btn-bottom-line
-                ul.menu-list#menu-list-bind-js.white-card
-                    li
-                        a(href='http://www.baidu.com') 首页
-                    li
-                        a(href='http://www.baidu.com') 原创
-                    li
-                        a(href='http://www.baidu.com') 转载
-                    li
-                        a(href='http://www.baidu.com') 实验室
-                    li
-                        a(href='http://www.baidu.com') 工具库
-                    li
-                        a(href='http://www.baidu.com') 关于我
-        div.main-container.max-width
-            main.left.main
-                div(style="" )
-                    block content
-            aside.left.aside(style="")
-                block aside
-        footer.footer.clear
-            div.max-width.pad-l-r.pc
-                a(href="http://www.baidu.com") 链接
-            div.mobile.show#footer-bind
-                a 移动端底部导航
-        script(src='/javascripts/main.js')
+extends layoutbasic
+block main-container
+    main.left.main
+        div(style="" )
+            block content
+    aside.left.aside(style="")
+        block aside

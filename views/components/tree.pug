@@ -1,0 +1,19 @@
+mixin tree(list)
+    div(style='margin:0 auto;max-width:500px').tree
+        ul.year.show
+            each year in list
+                li
+                    h2.sub-title-no-line.mouse#yearButton= `${year.year}年`
+                    ul.mon-list.show
+                        if year.monthList
+                            each month in year.monthList
+                                li
+                                    - var size=0 ;if(month.article&&month.article.constructor===[].constructor) size=month.article.length
+                                    h2.sub-title-no-line.mouse#monthButton= `${month.month}月（${size}篇文章）`
+                                    ul.date-list.show
+                                        if month.article
+                                            each article in month.article
+                                                li
+                                                    span=`${article.date}日：`
+                                                    a(href=`${article.href}`)= `${article.title}`
+    script(src='/javascripts/tree.js' defer)

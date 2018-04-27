@@ -23,7 +23,7 @@ function f2() {
         console.log('add name')
     }
     a = setTimeout(() => {
-        ht.className += ' hidden-scroll';
+        ht.className += 'hidden-scroll';
         console.log('clear name')
         a = null;
     }, 1500)
