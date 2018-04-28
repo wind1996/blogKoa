@@ -82,6 +82,14 @@ a:hover {
     float: left;
 }
 
+.adabab {
+    color: #adabab;
+}
+
+.br {
+    border-radius: 5px;
+}
+
 .mouse:hover {
     cursor: pointer;
 }
@@ -148,9 +156,7 @@ a:hover {
 /*副标题*/
 .sub-title, .sub-title-no-line {
     font-size: 16px;
-    margin-left: 10px;
-
-    margin-bottom: 0;
+    margin: 0 10px;
 }
 
 .sub-title {
@@ -247,7 +253,7 @@ a:hover {
 /*手机版菜单展开项内容*/
 .menu-list.active {
     opacity: 1;
-    margin: 50px 10px 10px;
+    transform: translateX(0);
     transition: all .5s ease-in-out;
 }
 
@@ -256,8 +262,9 @@ a:hover {
     position: absolute;
     left: 0;
     right: 0;
-    margin: -100px 10px 10px;
+    margin: 60px 10px 10px;
     padding: 10px;
+    transform: translateX(-110%);
     transition: all .5s ease-in-out;
 }
 
@@ -488,6 +495,10 @@ a:hover {
     .col-card-little-full-auto {
         width: 50%;
     }
+
+    .tree ul {
+        padding-left: 50px;
+    }
 }
 
 @media screen and (min-width: 650px) {
@@ -706,27 +717,89 @@ a:hover {
 }*/
 
 /*tree的css*/
-
 .tree ul.mon-list, .tree ul.date-list {
-    padding-left: 50px;
-    /*max-height: 0;*/
-    /*overflow: hidden;*/
-    /*transition: all .35s;*/
+    padding-left: 30px;
 }
 
-.tree ul {
-    /*padding-left: 50px;*/
-}
-/*
-
-.tree ul.show {
-    transition: all .35s;
+.tree ul li {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.tree .mon-list.show {
-    max-height: 1500px;
+.tree {
+    margin: 20px auto;
+    max-width: 500px;
 }
 
-.tree .date-list.show {
-    max-height: 400px;
-}*/
+/*//////////////////////////////////////////*/
+
+/*文章统计信息部分css*/
+.articleStatistics {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.articleStatistics fieldset {
+    border-color: #eee;
+
+}
+
+@media screen and (max-width: 550px) {
+    .articleStatistics .text-description li {
+        display: inline-block;
+        width: 25%;
+        box-sizing: border-box;
+        text-align: center;
+    }
+
+    .articleStatistics .chart {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 550px) {
+    .articleStatistics .text-description {
+        width: 100px;
+        float: left;
+        background: red;
+    }
+
+    .chart {
+        background: #e34a84;
+        margin-left: 100px;
+        height: 100px;
+    }
+}
+
+/*/////////////////////////*/
+
+.pagination {
+    text-align: center;
+    user-select: none;
+    font-weight: bold;
+}
+
+.pagination li {
+    display: inline-block;
+    border: 1px solid #000;
+    margin: 0 2px;
+}
+
+.pagination li a {
+    padding: 4px;
+}
+
+.pagination li:hover {
+    background: #5973ff;
+    color: #fff;
+}
+
+.pagination li.active, .pagination li.active:hover {
+    background: #486aaa;
+    color: #000;
+}
+
+.pagination li a:hover {
+    color: currentColor;
+}

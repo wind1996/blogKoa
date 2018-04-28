@@ -1,7 +1,11 @@
-mixin pagination(info)
-    ul.pagination
-        li= info
-        li 1
-        li 1
-        li 1
-        li 1
+mixin pagination(aa)
+    div(style='display:none')#paginationBasic= JSON.stringify(aa)
+    ul.pagination#paginationContainer
+        // each value in data
+        //     if value.isCurrent
+        //         li.active
+        //             a= value.num
+        //     else
+        //         li
+        //             - var n=value.num;if(n===0) n='>'; if(n===-1) n='<'
+        //             a(href=`${value.href}`)= n

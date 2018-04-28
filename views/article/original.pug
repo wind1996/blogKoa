@@ -32,12 +32,6 @@ block main-container
                     count: 4554,
                     content: '天猫，最大的商城,京东商城，最大的电子产品商城,京东商城，最大的电子产品商城'
                 })
-        div.col-card-little-full-auto
-            div.middle-card
-                + main-card({
-                    href: 'http://www.baidu.com',
-                    title: '标题四',
-                    count: 45,
-                    content: '苏宁易购，最大的中文搜索引擎,天猫，最大的商城,京东商城，最大的电子产品商城,京东商城，最大的电子产品商城'
-                })
-    + pagination(8)
+    + pagination({currentPage:15,baseUrl:'/original?page=',sumPage:20,size:7})
+block scriptInclude
+    script(src='/javascripts/pagination.js' defer)

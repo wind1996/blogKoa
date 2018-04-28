@@ -13,7 +13,7 @@ router.get('/original', async (ctx, next) => {
 
 router.get('/originalL', async (ctx, next) => {
     await ctx.render('article/originalList', {
-        title: 'blog'
+        title: '文章归档'
     })
 })
 router.get('/reprint', async (ctx, next) => {

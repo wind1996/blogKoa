@@ -80,4 +80,5 @@ window.onresize = function () {
     if (!/show/.test(ele.className)) {
         ele.className += ' show'
     }
+    //TODO 清除菜单的显示
 }

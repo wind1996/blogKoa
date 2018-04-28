@@ -1,0 +1,12 @@
+mixin articleStatistics(list)
+    div.pad.articleStatistics
+        fieldset.br
+            legend.br 文章统计
+            ul.text-description.adabab
+                li 分类:12+
+                li 留言:88+
+                li 阅读:99+
+                li 文章:99+
+            div.chart(style='overflow:hidden')
+                span 图表预留空间
+                div= `${JSON.stringify(list)}`
