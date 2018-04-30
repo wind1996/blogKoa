@@ -1,0 +1,8 @@
+mixin card-style2(item)
+    div.card-style2-effect
+        a(href=`${item.href}`)
+            div.card-bg-container(alt='背景图' style=item.bg ? `background-image: url("${item.bg}")`: 'background-image: url("http://h1.ioliu.cn//bing/NewOldBridge_EN-AU12192409966_1920x1080.jpg")')
+                div.card-bg-img
+            div.card-content
+                h2.card-content-title= item.title
+                div.card-content-detail= item.content

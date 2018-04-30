@@ -1,13 +1,13 @@
-extends  ../layout
-include ../components/card
+extends  ../layoutbasic
+include ../components/card-style2
 include ../components/card-show-list
 include  ../components/pagination
-block content
+block main-container
     div.pad
         h2.sub-title 实验室
-        div.col-card-little-auto
+        div.col-card-little-full-auto
             div.middle-card
-                + main-card({
+                + card-style2({
                     href: 'http://www.baidu.com',
                     title: '百度一下',
                     content: '百度，最大的中文搜索引擎',
@@ -15,51 +15,19 @@ block content
                     bg: 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=310705049,841159833&fm=173&app=25&f=JPEG?w=218&h=146&s=C880DF185182C6EC16542CC6030010A0',
                     category: [{href: 'www.qq.com', name: 'QQ'}, {href: 'www.163.com', name: '网易'}]
                 })
-        div.col-card-little-auto
+        div.col-card-little-full-auto
             div.middle-card
-                + main-card({href: 'http://www.baidu.com', title: '京东商城', content: '京东商城，最大的电子产品商城,京东商城，最大的电子产品商城'})
-        div.col-card-little-auto
+                + card-style2({href: 'http://www.baidu.com', title: '京东商城', content: '京东商城，最大的电子产品商城,京东商城，最大的电子产品商城'})
+        div.col-card-little-full-auto
             div.middle-card
-                + main-card({
-                    href: 'http://www.baidu.com',
-                    title: '天猫',
-                    content: '天猫，最大的商城,京东商城，最大的电子产品商城,京东商城，最大的电子产品商城'
-                })
-        div.col-card-little-auto
+                + card-style2({href: 'http://www.baidu.com', title: '京东商城', content: '京东商城，最大的电子产品商城,京东商城，最大的电子产品商城'})
+        div.col-card-little-full-auto
             div.middle-card
-                + main-card({
+                + card-style2({
                     href: 'http://www.baidu.com',
                     title: '苏宁易购',
                     content: '苏宁易购，最大的中文搜索引擎,天猫，最大的商城,京东商城，最大的电子产品商城,京东商城，最大的电子产品商城'
                 })
-    + pagination(8)
-block aside
-    div.pad(style='box-shadow: 0 0px 2px 1px #00000078;')
-        h2.aside-title 最新文章
-        ul.aside-list
-            li
-                a(href="#") lorem lorem lorem lorem lorem lorem
-            li
-                a(href="#") lorem lorem lorem lorem lorem lorem
-            li
-                a(href="#") lorem lorem lorem lorem
-        h2.aside-title 文章列表
-        ul.aside-list.limit-height.active
-            li
-                a(href="#") lorem lorem lorem lorem lorem lorem
-            li
-                a(href="#") lorem lorem lorem lorem lorem lorem
-            li
-                a(href="#") lorem lorem lorem lorem
-            li
-                a(href="#") lorem lorem lorem lorem lorem lorem
-            li
-                a(href="#") lorem lorem lorem lorem lorem lorem
-            li
-                a(href="#") lorem lorem lorem lorem
-            li
-                a(href="#") lorem lorem lorem lorem lorem lorem
-            li
-                a(href="#") lorem lorem lorem lorem lorem lorem
-            li
-                a(href="#") lorem lorem lorem lorem
+    + pagination({currentPage: 15, baseUrl: '/original?page=', sumPage: 20, size: 7})
+block scriptInclude
+    script(src='/javascripts/pagination.js' defer)
