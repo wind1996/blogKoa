@@ -5,15 +5,16 @@ include  ../components/pagination
 block main-container
     div.pad
         h2.sub-title 资源库
-        each value in list
-            div.col-card-little-full-auto
-                div.middle-card
-                    + card-style1({
-                        href: value.href,
-                        title: value.title,
-                        content: value.content,
-                        bg: value.bg
-                    })
+        if(list && list.length)
+            each value in list
+                div.col-card-little-full-auto
+                    div.middle-card
+                        + card-style1({
+                            href: value.href,
+                            title: value.title,
+                            content: value.content,
+                            bg: value.bg
+                        })
     + pagination({
         currentPage: pagination.currentPage,
         baseUrl: pagination.baseUrl,
