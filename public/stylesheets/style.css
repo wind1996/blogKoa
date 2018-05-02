@@ -692,6 +692,7 @@ a:hover {
     white-space: nowrap;
     margin: 5px 0;
     position: relative;
+    text-align: center;
 }
 
 .card-show-list .show-list li:before {
