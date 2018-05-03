@@ -20,15 +20,15 @@ container.addEventListener('click', function (e) {
     }
     var ul = tar.parentNode.childNodes[1]
     if (id === 'yearButton') {
-/*        aa(ul)
-        console.log(ul)*/
+        /*        aa(ul)
+                console.log(ul)*/
         $(ul).slideToggle(200)
     }
     if (id === 'monthButton') {
-       /* aa(ul)
+        /* aa(ul)
 
-        console.log(ul)*/
-       $(ul).slideToggle(200)
+         console.log(ul)*/
+        $(ul).slideToggle(200)
 
     }
 

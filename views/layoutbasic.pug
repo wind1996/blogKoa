@@ -1,3 +1,4 @@
+include  ./components/searchbox
 doctype html
 html
     head
@@ -14,6 +15,8 @@ html
                     h1.main-title.left 聆听的博客
                 nav.nav.right
                     ul.pc
+                        li.nav-btn.pc-search
+                            + searchbox
                         li.nav-btn
                             a(href='/') 首页
                         li.nav-btn
@@ -53,6 +56,8 @@ html
                             i.menu-btn-middle-line
                             i.menu-btn-bottom-line
                 ul.menu-list#menu-list-bind-js.white-card
+                    li(style='display:block;width:100%')
+                        + searchbox
                     li
                         a(href='/') 首页
                     li

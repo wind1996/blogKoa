@@ -914,3 +914,34 @@ a:hover {
     transform: scale(1);
     transition: all .35s;
 }
+
+/*//////////////////////////////////////////////////////*/
+.search-box {
+    padding: 0 5px;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 300px;
+    display: inline-block;
+}
+
+.search-box input, .search-box button {
+    /*border-radius: 2px;
+    line-height: 1.5;*/
+}
+
+.search-box input {
+    border-radius: 2px;
+    line-height: 1.5;
+    padding: 0 5px;
+    width: calc(100% - 80px);
+}
+
+@media screen and (max-width: 628px) {
+    .pc-search {
+        display: none;
+    }
+}
+
+.pc-search {
+    border-right: 1px solid #eee
+}

@@ -1,8 +1,9 @@
 const router = require('koa-router')();
-const toolController = require('../controller/toolController')
-const labController = require('../controller/labController')
-const homeController = require('../controller/homeController')
-const reprintController = require('../controller/reprintController')
+const toolController = require('../controller/tool/toolController')
+const labController = require('../controller/lab/labController')
+const homeController = require('../controller/home/homeController')
+const reprintController = require('../controller/article/reprintController')
+const originalListController = require('../controller/article/originListController')
 
 router.get('/', homeController.render)
 router.get('/original', async (ctx, next) => {
@@ -11,11 +12,7 @@ router.get('/original', async (ctx, next) => {
     })
 })
 
-router.get('/originalL', async (ctx, next) => {
-    await ctx.render('article/originalList', {
-        title: '文章归档'
-    })
-})
+router.get('/originalL', originalListController.render)
 router.get('/reprint', reprintController.render)
 router.get('/tool', toolController.render);
 router.get('/lab', labController.render);

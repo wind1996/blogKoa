@@ -1,12 +1,12 @@
-mixin articleStatistics(list)
+mixin articleStatistics(articleList,Count)
     div.pad.articleStatistics
         fieldset.br
             legend.br 文章统计
             ul.text-description.adabab
-                li 分类:12+
-                li 留言:88+
-                li 阅读:99+
-                li 文章:99+
-            div.chart(style='overflow:hidden')
-                span 图表预留空间
-                div= `${JSON.stringify(list)}`
+                li= `分类:${Count.categoryCount ? Count.categoryCount : 0}`
+                li= `留言:${Count.messageCount ? Count.messageCount : 0}`
+                li= `阅读:${Count.readCount ? Count.readCount : 0}`
+                li= `文章:${Count.articleCount ? Count.articleCount : 0}`
+            div.chart#chart-container(style='overflow:hidden')
+                span 图表预留空间,展示每个月的文章数,每个分类的文章情况
+                div#chart-data(style='display:none')= `${JSON.stringify(articleList)}`
