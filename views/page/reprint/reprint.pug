@@ -1,0 +1,30 @@
+extends  ../public/layoutbasic
+include ../../components/card
+include ../../components/card-show-list
+include  ../../components/pagination
+include ../../components/card-introduce
+
+block main-container
+    div.pad
+        h2.sub-title
+            a(href='/reprint?type=follow' title='查看更多') 我的关注
+        if(reprintList && reprintList.length)
+            each  value in reprintList
+                div.col-card-little-auto
+                    div.middle-card
+                        + card-show-list({
+                            title: value.title,
+                            bg: value.bg,
+                            list: value.list
+                        })
+    div.pad
+        h2.sub-title
+            a(href='/reprint?type=recommended' title='查看更多') 好文推荐
+        div
+            if(articleRecommendList && articleRecommendList.length)
+                ul
+                    each value in articleRecommendList
+                        li.pad.col-card-middle-auto
+                            + card-introduce(value)
+block scriptInclude
+    script(src='/javascripts/pagination.js' defer)

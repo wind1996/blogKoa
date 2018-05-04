@@ -1,6 +1,8 @@
-extends  ../layout
-include ../components/card
-include ../components/card-show-list
+extends  ../public/layout
+include ../../components/card
+include ../../components/card-show-list
+include ../../components/card-introduce
+include ../../components/buttons-level
 block content
     div.pad
         h2.sub-title 原创更新
@@ -28,17 +30,32 @@ block content
                             list: value.list
                         })
     div.pad
-        div.col-card-middle-auto
-            h2.sub-title 文章推荐
-            div.middle-card
-                p Lorem ipsum dolor sit ametlvoluptate voluptates!div.col-card-little-auto
-        div.col-card-middle-auto
-            h2.sub-title 友情链接
-            div.middle-card
-                if(otherWebsite)
-                + card-show-list({
-                    list: otherWebsite
-                })
+        h2.sub-title 文章推荐
+        if(articleRecommendList && articleRecommendList.length)
+            ul
+                each value in articleRecommendList
+                    li.pad.col-card-middle-auto
+                        + card-introduce(value)
+    div.pad
+        h2.sub-title 开发网站链接
+        div.pad
+            if(otherWebsite)
+                + buttons-level(otherWebsite)
+    //div.pad
+    //    div.col-card-middle-auto
+    //        h2.sub-title 文章推荐
+    //        ul.middle-card
+    //            if(articleRecommendList && articleRecommendList.length)
+    //                each value in articleRecommendList
+    //                    li.pad
+    //                        + card-introduce(value)
+    //    div.col-card-middle-auto
+    //        h2.sub-title 开发网站链接
+    //        div.middle-card
+    //            if(otherWebsite)
+    //            + card-show-list({
+    //                list: otherWebsite
+    //            })
 block aside
     div.pad(style='box-shadow: 0 0px 2px 1px #00000078;')
         h2.aside-title 最新文章

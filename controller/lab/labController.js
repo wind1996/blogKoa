@@ -1,5 +1,5 @@
 exports.render = async function (ctx, next) {
-    await ctx.render('lab/lab', {
+    await ctx.render('page/lab/lab', {
         title: '博客-实验室',
         list: [
             {

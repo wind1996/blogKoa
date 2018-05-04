@@ -1,0 +1,8 @@
+mixin card-introduce(data)
+    div.card-introduce
+        a.card-title.pad(href=data.href target="_blank")
+            div.left= data.title
+            if data.from
+                span.right= `来自${data.from}`
+        div.card-detail.pad
+            div= data.detail

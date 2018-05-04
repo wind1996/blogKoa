@@ -1,0 +1,20 @@
+extends  ../public/layoutbasic
+include ../../components/card-style2
+include ../../components/card-show-list
+include  ../../components/pagination
+block main-container
+    div.pad
+        h2.sub-title 实验室
+        if(list && list.length)
+            each value in list
+                div.col-card-little-full-auto
+                    div.middle-card
+                        + card-style2({
+                            href: value.href,
+                            title: value.title,
+                            content: value.content,
+                            bg: value.bg
+                        })
+    + pagination(pagination)
+block scriptInclude
+    script(src='/javascripts/pagination.js' defer)

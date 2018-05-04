@@ -1,0 +1,16 @@
+extends  ../public/layoutbasic
+include ../../components/card
+include ../../components/card-show-list
+include  ../../components/pagination
+block main-container
+    div.pad
+        h2.sub-title 我的关注
+        if(reprintList && reprintList.length)
+            each  value in reprintList
+                div.col-card-little-auto
+                    div.middle-card
+                        + card-show-list({
+                            title: value.title,
+                            bg: value.bg,
+                            list: value.list
+                        })

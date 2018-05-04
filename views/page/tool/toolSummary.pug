@@ -1,10 +1,10 @@
-extends  ../layoutbasic
-include ../components/card
-include ../components/card-style1
-include  ../components/pagination
+extends  ../public/layoutbasic
+include ../../components/card
+include ../../components/card-style1
+include  ../../components/pagination
 block main-container
     div.pad
-        h2.sub-title 资源库
+        h2.sub-title=`资源分类汇总`
         if(list && list.length)
             each value in list
                 div.col-card-little-full-auto

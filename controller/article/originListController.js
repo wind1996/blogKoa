@@ -1,5 +1,7 @@
-exports.render = async function (ctx, next) {
-    await ctx.render('article/originalList', {
+const originList = {};
+
+originList.recordRender = async function (ctx, next) {
+    await ctx.render('page/article/originalList', {
         title: '文章归档',
         article: [
             {
@@ -125,3 +127,15 @@ exports.render = async function (ctx, next) {
         }
     })
 };
+
+originList.listRender = async function (ctx, next) {
+    await ctx.render('page/article/original', {
+        title: 'blog'
+    })
+}
+originList.getStatistics = async function (ctx, next) {
+    ctx.body = {
+        data: 9999
+    }
+};
+module.exports = originList;

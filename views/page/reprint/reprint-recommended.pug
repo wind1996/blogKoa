@@ -1,0 +1,17 @@
+extends  ../public/layoutbasic
+include ../../components/card
+include ../../components/card-show-list
+include  ../../components/pagination
+include ../../components/card-introduce
+
+block main-container
+    div.pad
+        h2.sub-title 文章推荐
+        if(articleRecommendList && articleRecommendList.length)
+            ul
+                each value in articleRecommendList
+                    li.pad.col-card-middle-auto
+                        + card-introduce(value)
+    + pagination(pagination)
+block scriptInclude
+    script(src='/javascripts/pagination.js' defer)

@@ -7,4 +7,4 @@ mixin card-show-list(item)
             if(item.list&&item.list.length)
                 each value in item.list
                     li
-                        a(href=`${value.href}`)=value.name
+                        a(href=`${value.href}` target="_blank")=value.name

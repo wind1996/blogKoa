@@ -9,4 +9,4 @@ mixin articleStatistics(articleList,Count)
                 li= `文章:${Count.articleCount ? Count.articleCount : 0}`
             div.chart#chart-container(style='overflow:hidden')
                 span 图表预留空间,展示每个月的文章数,每个分类的文章情况
-                div#chart-data(style='display:none')= `${JSON.stringify(articleList)}`
+                //div#chart-data(style='display:none')= `${JSON.stringify(articleList)}`
