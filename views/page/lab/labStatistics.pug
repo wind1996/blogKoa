@@ -1,12 +1,12 @@
 extends  ../public/layoutbasic
-include ../../components/card
-include ../../components/card-style1
+include ../../components/card-style2
+include ../../components/card-show-list
 include  ../../components/pagination
 include  ../../components/table
-block main-container
 
+block main-container
     div.pad
-        h2.sub-title=`资源分类汇总`
+        h2.sub-title 实验室归档
         div.pad
             + table(list,[
                 {name: '序号', key: 'index'},
@@ -15,11 +15,6 @@ block main-container
                 {name: '地址', key: 'href'},
                 {name: '背景图片', key: 'bg'}
             ])
-    + pagination({
-        currentPage: pagination.currentPage,
-        baseUrl: pagination.baseUrl,
-        sumPage: pagination.sumPage,
-        size: pagination.size
-    })
+    + pagination(pagination)
 block scriptInclude
     script(src='/javascripts/pagination.js' defer)
