@@ -1,0 +1,20 @@
+extends  ../public/layoutbasic
+include ../../components/card
+include ../../components/card-show-list
+include  ../../components/pagination
+include ../../components/card-introduce
+include ../../components/table
+
+block main-container
+    div.pad
+        h2.sub-title 转载归档
+        div.pad
+            + table(articleRecommendList,[
+                {name: '序号', key: 'index'},
+                {name: '名称', key: 'title'},
+                {name: '来源', key: 'from'},
+                {name: '链接', key: 'href'}
+            ])
+    + pagination(pagination)
+block scriptInclude
+    script(src='/javascripts/pagination.js' defer)

@@ -41,24 +41,9 @@ block content
         div.pad
             if(otherWebsite)
                 + buttons-level(otherWebsite)
-    //div.pad
-    //    div.col-card-middle-auto
-    //        h2.sub-title 文章推荐
-    //        ul.middle-card
-    //            if(articleRecommendList && articleRecommendList.length)
-    //                each value in articleRecommendList
-    //                    li.pad
-    //                        + card-introduce(value)
-    //    div.col-card-middle-auto
-    //        h2.sub-title 开发网站链接
-    //        div.middle-card
-    //            if(otherWebsite)
-    //            + card-show-list({
-    //                list: otherWebsite
-    //            })
 block aside
     div.pad(style='box-shadow: 0 0px 2px 1px #00000078;')
-        h2.aside-title 最新文章
+        h2.aside-title 热门文章
         ul.aside-list
             li
                 a(href="#") lorem lorem lorem lorem lorem lorem
@@ -66,23 +51,6 @@ block aside
                 a(href="#") lorem lorem lorem lorem lorem lorem
             li
                 a(href="#") lorem lorem lorem lorem
-        h2.aside-title 文章列表
-        ul.aside-list.limit-height.active
-            li
-                a(href="#") lorem lorem lorem lorem lorem lorem
-            li
-                a(href="#") lorem lorem lorem lorem lorem lorem
-            li
-                a(href="#") lorem lorem lorem lorem
-            li
-                a(href="#") lorem lorem lorem lorem lorem lorem
-            li
-                a(href="#") lorem lorem lorem lorem lorem lorem
-            li
-                a(href="#") lorem lorem lorem lorem
-            li
-                a(href="#") lorem lorem lorem lorem lorem lorem
-            li
-                a(href="#") lorem lorem lorem lorem lorem lorem
-            li
-                a(href="#") lorem lorem lorem lorem
+        h2.aside-title 文章类别
+        div(style='font-weight:200')
+            + buttons-level(category)

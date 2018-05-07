@@ -48,7 +48,7 @@ html::-webkit-scrollbar-corner { /*边角（位置6）*/
     background:#FF0BEE;
 }*/
 
-/*同意浏览器样式*/
+/*统一浏览器样式*/
 body {
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
     margin: 0;
@@ -75,7 +75,7 @@ a {
 }
 
 a:hover {
-    color: #f90;
+    color: #FB4F4F;
 }
 
 .left {
@@ -98,6 +98,14 @@ a:hover {
     float: right;
 }
 
+.text_center {
+    text-align: center;
+}
+
+.text_right {
+    text-align: right;
+}
+
 .clear:after {
     content: '';
     display: block;
@@ -106,6 +114,10 @@ a:hover {
 
 .pad {
     padding: 10px;
+}
+
+.mar {
+    margin: 10px;
 }
 
 .pad-l-r {
@@ -454,7 +466,7 @@ a:hover {
 }
 
 /*手机电脑导航栏,footer切换*/
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 650px) {
     .nav .pc {
         display: none;
     }
@@ -915,6 +927,7 @@ a:hover {
 
 .buttons-level {
     overflow: hidden;
+    line-height: 1.1em;
 }
 
 .buttons-level .item {
@@ -993,3 +1006,45 @@ a:hover {
     color: #000000;
     background-color: #EAF2D3;
 }
+
+/*文章部分css*/
+.content-display {
+    overflow: hidden;
+    font-size: medium;
+}
+
+.content-display-title {
+    font-size: 2em;
+    margin: .4em 0;
+}
+
+.content-display-body p {
+    text-indent: 2em;
+    font-size: 87.5%;
+    margin: 1em 0;
+}
+
+.hr {
+    background: #eee;
+}
+
+.content-display-guide .pre {
+    float: left;
+}
+
+.content-display-guide .next {
+    float: right;
+}
+
+.content-display-category {
+    margin-left: 3em;
+    text-indent: -3em;
+}
+
+@media screen and (max-width: 500px) {
+    .content-display-guide .pre, .content-display-guide .next {
+        float: none;
+        display: block;
+    }
+}
+

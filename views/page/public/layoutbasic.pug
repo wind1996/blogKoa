@@ -11,8 +11,12 @@ html
     body
         header.header.show#header-bind
             div.pad-l-r.clear.max-width
-                a(href='/',title='首页')
-                    h1.main-title.left 笙笙不息
+                div.left
+                    if(headerCustom)
+                        block header
+                    else
+                        a(href='/',title='首页')
+                            h1.main-title 笙笙不息
                 nav.nav.right
                     ul.pc
                         li.nav-btn.pc-search
@@ -28,8 +32,6 @@ html
                                     a(href='/original?type=server') 后端
                                 li
                                     a(href='/originalL') 归档
-                                li
-                                    a(href='/about') 关于我
                         li.nav-btn
                             a(href='/reprint') 转载
                             ul.pc-sec-menu.white-card
@@ -55,6 +57,15 @@ html
                                     a(href='/tool?type=sql') 娱乐
                                 li
                                     a(href='/tool/category') 归档
+                        li.nav-btn
+                            a.nav-btn(href='/about') 关于
+                            ul.pc-sec-menu.white-card
+                                li
+                                    a(href='/about') 介绍
+                                li
+                                    a(href='/about') 简历
+                                li
+                                    a(href='/about') 动态
                     div.mobile
                         div.menu-btn#menu-bind-js
                             i.menu-btn-top-line
@@ -95,7 +106,11 @@ html
             block main-container
         footer.footer.clear
             div.max-width.pad-l-r.pc
-                a(href="http://www.baidu.com") 链接
+                //a(href="http://www.baidu.com") 链接
+                div(style='text-align:center')
+                    | Powered & Designed by Kongdepeng
+                    //| Copyright© 2018-2018 孔德鹏-笙笙不息
+                    a(href='http://www.miibeian.gov.cn') 京ICP备18005112号
             div.mobile.show#footer-bind
                 a 移动端底部导航
         script(src='https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js' defer)

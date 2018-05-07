@@ -4,7 +4,10 @@ include ../../components/card-style1
 include  ../../components/pagination
 include  ../../components/table
 block main-container
-
+    div.pad.text_center
+        a.mar(href='/tool/category?type=dev') 开发归档
+        a.mar(href='/tool/category?type=office') 办公归档
+        a.mar(href='/tool/category?type=game') 娱乐归档
     div.pad
         h2.sub-title=`资源分类汇总`
         div.pad

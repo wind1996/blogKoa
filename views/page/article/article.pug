@@ -1,0 +1,20 @@
+extends  ../public/layoutbasic
+include ../../components/card
+include ../../components/card-show-list
+include  ../../components/pagination
+include  ../../components/content-display
+block header
+    h1.main-title=content.title
+block main-container
+    div.pad
+        h2.sub-title 原创/文章
+        div.pad
+            + content-display(content)
+    div.pad
+        h2.sub-title 同类型推荐
+        ul.pad
+            each  value in recommendList
+                li.col-card-little-full-auto
+                    a(href=value.href)= value.title
+block scriptInclude
+    //script(src='/javascripts/pagination.js' defer)

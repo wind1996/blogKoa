@@ -3,7 +3,7 @@ exports.render = async function (ctx, next) {
             title: '博客首页',
             originalList: [
                 {
-                    href: 'http://www.baidu.com',
+                    href: '/article/2018/05/04/webapackinit',
                     title: 'webpack入门',
                     content: '两分钟入门webpack构建工具',
                     count: 90,
@@ -11,21 +11,21 @@ exports.render = async function (ctx, next) {
                     category: [{href: 'www.qq.com', name: '自动化'}, {href: 'www.163.com', name: 'node'}]
                 },
                 {
-                    href: 'http://www.baidu.com',
+                    href: '/article/2017/05/04/webapackinit',
                     title: 'webpack入门',
                     count: 91,
                     content: '两分钟入门webpack构建工具',
                     category: [{href: 'www.qq.com', name: '自动化'}, {name: 'node'}]
                 },
                 {
-                    href: 'http://www.baidu.com',
+                    href: '/article/2017/04/04/gulp',
                     title: 'gulp入门',
                     count: 91,
                     content: '两分钟入门webpack构建工具',
                     category: [{href: 'www.qq.com', name: '自动化'}, {name: 'node'}]
                 },
                 {
-                    href: 'http://www.baidu.com',
+                    href: '/article/2017/04/01/gulp',
                     title: 'gulp入门',
                     count: 91,
                     content: '两分钟入门流式构建工具gulp',
@@ -115,6 +115,14 @@ exports.render = async function (ctx, next) {
                 {href: 'www.qq.com', name: '第一条信息链接，第一条信息链接'},
                 {href: 'www.qq.com', name: '第一条信息链接，第一条信息链接'},
                 {href: 'www.qq.com', name: '第一条信息链接，第一条信息链接'},
+            ],
+            category: [
+                {href: '/', name: 'HTML', color: '#eee'},
+                {href: '/', name: 'CSS', color: '#ee4'},
+                {href: '/', name: 'JavaScript', color: '#e3e'},
+                {href: '/', name: 'Node js', color: '#e44'},
+                {href: '/', name: 'Koa', color: '#23e'},
+                {href: '/', name: 'Express', color: '#9ee'},
             ]
         }
     )
