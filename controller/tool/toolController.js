@@ -46,7 +46,7 @@ toolController.render = async function (ctx, next) {
     })
 };
 toolController.categoryRender = async function (ctx, next) {
-    await ctx.render('page/tool/toolSummary', {
+    await ctx.render('page/statistics/toolSummary', {
         title: '博客-资源分类汇总',
         role: '开发',
         list: [

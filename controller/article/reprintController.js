@@ -122,6 +122,6 @@ reprintController.render = async function (ctx, next) {
 };
 
 reprintController.renderStatistics = async function (ctx, next) {
-    await ctx.render('page/reprint/reprintStatistics', data)
+    await ctx.render('page/statistics/reprintStatistics', data)
 }
 module.exports = reprintController

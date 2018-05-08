@@ -42,7 +42,7 @@ lab.render = async function (ctx, next) {
 
 
 lab.categoryRender = async function (ctx, next) {
-    await ctx.render('page/lab/labStatistics', {
+    await ctx.render('page/statistics/labStatistics', {
         title: '博客-实验室归档',
         list: [
             {

@@ -1,10 +1,11 @@
 mixin buttons-level(list)
     ul.buttons-level
-        each value in list
-            if value.href
-                li.item.left.animate(style=`background:${value.color}`)
-                    a(href=value.href targer="_blank")= value.name
-            else
-                li.item.left(style=`background:${value.color}`)
-                    span=value.name
+        if(list&&list.length)
+            each value in list
+                if value.href
+                    li.item.left.animate(style=`background:${value.color}`)
+                        a(href=value.href targer="_blank")= value.name
+                else
+                    li.item.left(style=`background:${value.color}`)
+                        span=value.name
 

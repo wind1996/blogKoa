@@ -1,23 +1,33 @@
 mixin content-display(data)
     //div(style='background:#f88')= `${JSON.stringify(data)}`
     article.content-display
-        div.content-display-category
-            span 标签：
-            each value,index in data.category
-                a(href=value.href)=value.name
-                if(index !== data.category.length - 1)
-                    | /
-        hr.hr
+        if(data.header && data.header.length)
+            each value in data.header
+                div !{value}
+        if(data.category && data.category.length)
+            div.content-display-category
+                span 标签：
+                each value,index in data.category
+                    a(href=value.href)=value.name
+                    if(index !== data.category.length - 1)
+                        | /
+            hr.hr
         h1.content-display-title.text_center= data.title
 
         div.text_right.pad-l-r
-            span=`${data.auth}更新于${data.updated_time}`
-        div.content-display-body !{data.body}
+            span=`${data.auth || ''}`
+            if data.updated_time
+                span= `更新于${data.updated_time}`
+        if data.body
+            div.content-display-body !{data.body}
         hr.hr
         div.content-display-guide.clear
-            a.pre(href=data.pre.href)= `上一篇：${data.pre.title}`
-            a.next(href=data.next.href)= `下一篇：${data.next.title}`
-        hr.hr
+            if data.pre
+                a.pre(href=data.pre.href)= `上一篇：${data.pre.title}`
+            if data.next
+                a.next(href=data.next.href)= `下一篇：${data.next.title}`
+        if(data.pre || data.next)
+            hr.hr
         if(data.footer && data.footer.length)
             each value in data.footer
                 div !{value}

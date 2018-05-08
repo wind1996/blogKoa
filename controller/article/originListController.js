@@ -1,7 +1,7 @@
 const originList = {};
 
 originList.recordRender = async function (ctx, next) {
-    await ctx.render('page/article/originalList', {
+    await ctx.render('page/statistics/originalList', {
         title: '文章归档',
         article: [
             {
@@ -130,7 +130,46 @@ originList.recordRender = async function (ctx, next) {
 
 originList.listRender = async function (ctx, next) {
     await ctx.render('page/article/original', {
-        title: 'blog'
+        title: 'blog',
+        articleList: [
+            {
+                href: 'http://www.baidu.com',
+                title: '标题一',
+                content: '百度，最大的中文搜索引擎',
+                count: 90,
+                bg: 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=310705049,841159833&fm=173&app=25&f=JPEG?w=218&h=146&s=C880DF185182C6EC16542CC6030010A0',
+                category: [{href: 'www.qq.com', name: 'QQ'}, {href: 'www.163.com', name: '网易'}]
+            }, {
+                href: 'http://www.baidu.com',
+                title: '标题一',
+                content: '百度，最大的中文搜索引擎',
+                count: 90,
+                bg: 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=310705049,841159833&fm=173&app=25&f=JPEG?w=218&h=146&s=C880DF185182C6EC16542CC6030010A0',
+                category: [{href: 'www.qq.com', name: 'QQ'}, {href: 'www.163.com', name: '网易'}]
+            }, {
+                href: 'http://www.baidu.com',
+                title: '标题一',
+                content: '百度，最大的中文搜索引擎',
+                count: 90,
+                bg: 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=310705049,841159833&fm=173&app=25&f=JPEG?w=218&h=146&s=C880DF185182C6EC16542CC6030010A0',
+                category: [{href: 'www.qq.com', name: 'QQ'}, {href: 'www.163.com', name: '网易'}]
+            }, {
+                href: 'http://www.baidu.com',
+                title: '标题一',
+                content: '百度，最大的中文搜索引擎',
+                count: 90,
+                bg: 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=310705049,841159833&fm=173&app=25&f=JPEG?w=218&h=146&s=C880DF185182C6EC16542CC6030010A0',
+                category: [{href: 'www.qq.com', name: 'QQ'}, {href: 'www.163.com', name: '网易'}]
+            }
+        ],
+        category: [
+            {href: '/', name: 'HTML', color: '#eee'},
+            {href: '/', name: 'CSS', color: '#ee4'},
+            {href: '/', name: 'JavaScript', color: '#e3e'},
+            {href: '/', name: 'Node js', color: '#e44'},
+            {href: '/', name: 'Koa', color: '#23e'},
+            {href: '/', name: 'Express', color: '#9ee'},
+        ]
     })
 }
 originList.getStatistics = async function (ctx, next) {

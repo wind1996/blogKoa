@@ -2,36 +2,19 @@ extends  ../public/layoutbasic
 include ../../components/card
 include ../../components/card-show-list
 include  ../../components/pagination
+include ../../components/buttons-level
+
 block main-container
     div.pad
+        h2.sub-title
+            a(href='/tag') 按标签检索
+    div.pad
         h2.sub-title 原创列表
-        div.col-card-little-full-auto
-            div.middle-card
-                + main-card({
-                    href: 'http://www.baidu.com',
-                    title: '标题一',
-                    content: '百度，最大的中文搜索引擎',
-                    count: 90,
-                    bg: 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=310705049,841159833&fm=173&app=25&f=JPEG?w=218&h=146&s=C880DF185182C6EC16542CC6030010A0',
-                    category: [{href: 'www.qq.com', name: 'QQ'}, {href: 'www.163.com', name: '网易'}]
-                })
-        div.col-card-little-full-auto
-            div.middle-card
-                + main-card({
-                    href: 'http://www.baidu.com',
-                    title: '标题2',
-                    count: 66,
-                    content: '京东商城，最大的电子产品商城,京东商城，最大的电子产品商城',
-                    category: [{href: 'www.qq.com', name: 'QQ'}]
-                })
-        div.col-card-little-full-auto
-            div.middle-card
-                + main-card({
-                    href: 'http://www.baidu.com',
-                    title: '标题三',
-                    count: 4554,
-                    content: '天猫，最大的商城,京东商城，最大的电子产品商城,京东商城，最大的电子产品商城'
-                })
-    + pagination({currentPage:15,baseUrl:'/original?page=',sumPage:20,size:7})
+        if(articleList && articleList.length)
+            each value in articleList
+                div.col-card-little-full-auto
+                    div.middle-card
+                        + main-card(value)
+    + pagination({currentPage: 15, baseUrl: '/original?page=', sumPage: 20, size: 7})
 block scriptInclude
     script(src='/javascripts/pagination.js' defer)
