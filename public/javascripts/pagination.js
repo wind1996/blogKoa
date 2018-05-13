@@ -1,5 +1,5 @@
 ;(function () {
-    var data = JSON.parse($('#paginationBasic').html());
+    var data = JSON.parse($('#paginationBasic').text());
     console.log(data);
     var currentPage = data.currentPage;
     var baseUrl = data.baseUrl;
@@ -10,13 +10,13 @@
         for (var i = 1; i <= sumPage; i++) {
             result.push({text: i, isCurrent: i === currentPage, href: baseUrl + i})
         }
-    } else if (currentPage - 1 < size - 2) {
+    } else if (currentPage - 1 < size - 2-1) {
         for (var i = 1; i <= size - 2; i++) {
             result.push({text: i, isCurrent: i === currentPage, href: baseUrl + i})
         }
         result.push({text: '...', isCurrent: false})
         result.push({text: sumPage, isCurrent: false, href: baseUrl + sumPage})
-    } else if (sumPage - currentPage < size - 2) {
+    } else if (sumPage - currentPage < size - 2-1) {
         for (var i = sumPage; i > sumPage - size + 2; i--) {
             result.unshift({text: i, isCurrent: i === currentPage, href: baseUrl + i})
         }

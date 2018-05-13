@@ -1,5 +1,5 @@
 mixin pagination(aa)
-    div(style='display:none')#paginationBasic= JSON.stringify(aa)
+    div(style='display:none')#paginationBasic !{JSON.stringify(aa)}
     ul.pagination#paginationContainer
         // each value in data
         //     if value.isCurrent

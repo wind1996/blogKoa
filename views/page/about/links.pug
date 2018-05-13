@@ -5,8 +5,8 @@ block main-container
         div.pad(style='max-width:600px;margin:0 auto')
             if(linkGroup && linkGroup.length)
             each val in linkGroup
-                h2.sub-title-no-line= val.name
+                h2.sub-title-no-line= val.title
                 ul.pad(style='padding-left:20px')
                     each value in val.links
                         li.col-card-little-auto
-                            a(href=value.href)= value.name
+                            a(href=value.url)= value.title

@@ -9,11 +9,12 @@ block main-container
         h2.sub-title 实验室归档
         div.pad
             + table(list,[
-                {name: '序号', key: 'index'},
+                {name: '序号', key: 'id'},
                 {name: '名称', key: 'title'},
-                {name: '内容', key: 'content'},
-                {name: '地址', key: 'href'},
-                {name: '背景图片', key: 'bg'}
+                {name: '简述', key: 'description'},
+                {name: '地址', key: 'url', isLink: true},
+                {name: 'git地址', key: 'location', isLink: true},
+                {name: '点击数', key: 'click_count'}
             ])
     + pagination(pagination)
 block scriptInclude

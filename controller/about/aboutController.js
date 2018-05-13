@@ -1,4 +1,5 @@
 const aboutController = {};
+const model = require('../../middleware/model');
 aboutController.meRender = async function (ctx, next) {
     await ctx.render('page/about/me', {
         title: '个人介绍',
@@ -39,23 +40,30 @@ aboutController.dynamicRender = async function (ctx, next) {
     })
 };
 aboutController.linksRender = async function (ctx, next) {
+    let list = await model.link.findAll();
     await ctx.render('page/about/links', {
         title: '友链',
         linkGroup: [
             {
-                name: '名称',
-                links: [
-                    {href: 'www.qq.com', name: '慕课网 imooc', color: '#eee'},
-                    {href: 'www.qq.com', name: '慕课网 imooc', color: '#f8ff2a'},
-                    {href: 'www.qq.com', name: '阮一峰网络日志', color: '#ffe88f'},
-                    {href: 'www.qq.com', name: '阮一峰网络日志', color: '#b0ff54'},
-                    {href: 'www.qq.com', name: '新空间新生活', color: '#69b5ff'},
-                    {name: '第一条信息链接，第一条信息链接'},
-                    {href: 'www.qq.com', name: '第一条信息链接，第一条信息链接'},
-                    {href: 'www.qq.com', name: '第一条信息链接，第一条信息链接'}
-                ]
+                title: '名称',
+                links: list
             }
-        ]
+        ],
+        /* linkGroup: [
+             {
+                 name: '名称',
+                 links: [
+                     {href: 'www.qq.com', name: '慕课网 imooc', color: '#eee'},
+                     {href: 'www.qq.com', name: '慕课网 imooc', color: '#f8ff2a'},
+                     {href: 'www.qq.com', name: '阮一峰网络日志', color: '#ffe88f'},
+                     {href: 'www.qq.com', name: '阮一峰网络日志', color: '#b0ff54'},
+                     {href: 'www.qq.com', name: '新空间新生活', color: '#69b5ff'},
+                     {name: '第一条信息链接，第一条信息链接'},
+                     {href: 'www.qq.com', name: '第一条信息链接，第一条信息链接'},
+                     {href: 'www.qq.com', name: '第一条信息链接，第一条信息链接'}
+                 ]
+             }
+         ]*/
     })
 };
 

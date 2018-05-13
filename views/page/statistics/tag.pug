@@ -9,8 +9,8 @@ block main-container
             each value,index in tagList
                 if value.color
                     li(style=`background:${value.color}`)
-                        a(href=value.href)=value.name
+                        a(href=value.url)=value.title
                 else
                     li
-                        a(href=value.href)=value.name
+                        a(href=value.url)=value.title
 block scriptInclude

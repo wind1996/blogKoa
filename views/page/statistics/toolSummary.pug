@@ -7,16 +7,17 @@ block main-container
     div.pad.text_center
         a.mar(href='/tool/category?type=dev') 开发归档
         a.mar(href='/tool/category?type=office') 办公归档
-        a.mar(href='/tool/category?type=game') 娱乐归档
+        a.mar(href='/tool/category?type=life') 娱乐归档
     div.pad
         h2.sub-title=`实用工具归档`
         div.pad
             + table(list,[
                 {name: '序号', key: 'index'},
                 {name: '名称', key: 'title'},
-                {name: '内容', key: 'content'},
-                {name: '地址', key: 'href'},
-                {name: '背景图片', key: 'bg'}
+                {name: '内容', key: 'description'},
+                {name: '地址', key: 'url', isLink: true},
+                {name: '类型', key: 'type'},
+                {name: '背景图片', key: 'bg_url', isLink: true}
             ])
     + pagination({
         currentPage: pagination.currentPage,
