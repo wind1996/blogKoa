@@ -4,7 +4,8 @@ module.exports = db.defineModel('tool', {
     id: {
         type: db.INTEGER,
         autoIncrement: true,
-        primaryKey: true
+        primaryKey: true,
+        unique: true
     },
     title: db.STRING(100),
     description: {

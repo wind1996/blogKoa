@@ -1,6 +1,6 @@
 const db = require('../middleware/db');
-//实验室
-module.exports = db.defineModel('link', {
+//HTML模板
+module.exports = db.defineModel('html', {
     id: {
         type: db.INTEGER,
         autoIncrement: true,
@@ -12,23 +12,19 @@ module.exports = db.defineModel('link', {
         type: db.STRING(200),
         allowNull: true
     },
-    url: {
-        type: db.STRING(100),
+    article: {
+        type: db.STRING(200),
         allowNull: true
     },
-    color: {
-        type: db.STRING(100),
-        allowNull: true
-    },
-    type: {
-        type: db.STRING(100),
-        allowNull: true
-    },
-    bg_url: {
-        type: db.STRING(100),
-        allowNull: true
+    view_count: {
+        type: db.INTEGER
     },
     online: {
         type: db.BOOLEAN,
+        defaultValue: true
+    },
+    isDelete: {
+        type: db.BOOLEAN,
+        defaultValue: false
     }
 });

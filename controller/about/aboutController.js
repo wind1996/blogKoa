@@ -41,30 +41,21 @@ aboutController.dynamicRender = async function (ctx, next) {
 };
 aboutController.linksRender = async function (ctx, next) {
     let list = await model.link.findAll();
+    let type = new Set(list.map(x => x.type));
+    let result_list = [];
+    for (let value of type.values()) {
+        console.log(2222, value, type);
+        result_list.push({
+            title: value,
+            links: list.filter(x => {
+                return x.type === value
+            })
+        })
+    }
     await ctx.render('page/about/links', {
         title: '友链',
-        linkGroup: [
-            {
-                title: '名称',
-                links: list
-            }
-        ],
-        /* linkGroup: [
-             {
-                 name: '名称',
-                 links: [
-                     {href: 'www.qq.com', name: '慕课网 imooc', color: '#eee'},
-                     {href: 'www.qq.com', name: '慕课网 imooc', color: '#f8ff2a'},
-                     {href: 'www.qq.com', name: '阮一峰网络日志', color: '#ffe88f'},
-                     {href: 'www.qq.com', name: '阮一峰网络日志', color: '#b0ff54'},
-                     {href: 'www.qq.com', name: '新空间新生活', color: '#69b5ff'},
-                     {name: '第一条信息链接，第一条信息链接'},
-                     {href: 'www.qq.com', name: '第一条信息链接，第一条信息链接'},
-                     {href: 'www.qq.com', name: '第一条信息链接，第一条信息链接'}
-                 ]
-             }
-         ]*/
+        linkGroup: result_list
     })
 };
 
-module.exports = aboutController
+module.exports = aboutController;

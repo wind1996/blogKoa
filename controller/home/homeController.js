@@ -49,7 +49,6 @@ exports.render = async function (ctx, next) {
             reprintList: [
                 {
                     title: '这是标题',
-                    bg: 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=310705049,841159833&fm=173&app=25&f=JPEG?w=218&h=146&s=C880DF185182C6EC16542CC6030010A0',
                     list: [
                         {href: 'www.qq.com', name: '第一条信息链接，第一条信息链接'},
                         {href: 'www.qq.com', name: '第一条信息链接，第一条信息链接'},
@@ -60,7 +59,6 @@ exports.render = async function (ctx, next) {
                 },
                 {
                     title: '这是标题',
-                    bg: 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=310705049,841159833&fm=173&app=25&f=JPEG?w=218&h=146&s=C880DF185182C6EC16542CC6030010A0',
                     list: [
                         {href: 'www.qq.com', name: '第一条信息链接，第一条信息链接'},
                         {href: 'www.qq.com', name: '第一条信息链接，第一条信息链接'},
@@ -71,7 +69,6 @@ exports.render = async function (ctx, next) {
                 },
                 {
                     title: '这是标题',
-                    bg: 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=310705049,841159833&fm=173&app=25&f=JPEG?w=218&h=146&s=C880DF185182C6EC16542CC6030010A0',
                     list: [
                         {href: 'www.qq.com', name: '第一条信息链接，第一条信息链接'},
                         {href: 'www.qq.com', name: '第一条信息链接，第一条信息链接'},
@@ -106,15 +103,11 @@ exports.render = async function (ctx, next) {
                 }
             ],
             otherWebsite: [
-                {href: 'www.qq.com', name: '慕课网 imooc', color: '#eee'},
+                {href: 'www.qq.com', name: '慕课网', color: '#eee'},
                 {href: 'www.qq.com', name: '慕课网 imooc', color: '#f8ff2a'},
                 {href: 'www.qq.com', name: '阮一峰网络日志', color: '#ffe88f'},
                 {href: 'www.qq.com', name: '阮一峰网络日志', color: '#b0ff54'},
-                {href: 'www.qq.com', name: '新空间新生活', color: '#69b5ff'},
-                {name: '第一条信息链接，第一条信息链接'},
-                {href: 'www.qq.com', name: '第一条信息链接，第一条信息链接'},
-                {href: 'www.qq.com', name: '第一条信息链接，第一条信息链接'},
-                {href: 'www.qq.com', name: '第一条信息链接，第一条信息链接'},
+                {href: 'www.qq.com', name: '新空间新生活', color: '#69b5ff'}
             ],
             category: [
                 {href: '/', name: 'HTML', color: '#eee'},

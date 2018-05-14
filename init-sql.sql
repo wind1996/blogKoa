@@ -39,13 +39,27 @@ INSERT INTO `tag` (`id`, `title`, `description`, `key_word`, `color`, `online`,`
 INSERT INTO `tag` (`id`, `title`, `description`, `key_word`, `color`, `online`,`createdAt`, `updatedAt`, `version`) VALUES (17, 'JS',  'JS', 'JS', '#08160',true, now(), now(), 0);
 
 
-INSERT INTO `link` (`id`, `title`, `description`, `url`, `color`,`bg_url`, `online`,`type`,`createdAt`, `updatedAt`, `version`) VALUES (1, '慕课网',  '慕课网', 'http://www.imooc.com', '#0F0','http://pic1.win4000.com/wallpaper/9/56fcdef02f263.jpg',true, '1',now(), now(), 0);
-INSERT INTO `link` (`id`, `title`, `description`, `url`, `color`,`bg_url`, `online`,`type`,`createdAt`, `updatedAt`, `version`) VALUES (2, '阮一峰',  '慕课网', 'http://www.imooc.com', '#0F0','http://pic1.win4000.com/wallpaper/9/56fcdef02f263.jpg',true, '1',now(), now(), 0);
-INSERT INTO `link` (`id`, `title`, `description`, `url`, `color`,`bg_url`, `online`,`type`,`createdAt`, `updatedAt`, `version`) VALUES (3, '张鑫旭',  '慕课网', 'http://www.imooc.com', '#0F0','http://pic1.win4000.com/wallpaper/9/56fcdef02f263.jpg',true, '2',now(), now(), 0);
-INSERT INTO `link` (`id`, `title`, `description`, `url`, `color`,`bg_url`, `online`,`type`,`createdAt`, `updatedAt`, `version`) VALUES (4, '掘金',  '慕课网', 'http://www.imooc.com', '#0F0','http://pic1.win4000.com/wallpaper/9/56fcdef02f263.jpg',true, '1',now(), now(), 0);
-INSERT INTO `link` (`id`, `title`, `description`, `url`, `color`,`bg_url`, `online`,`type`,`createdAt`, `updatedAt`, `version`) VALUES (5, 'segmentDefault',  '慕课网', 'http://www.imooc.com', '#0F0','http://pic1.win4000.com/wallpaper/9/56fcdef02f263.jpg',true, '2',now(), now(), 0);
-INSERT INTO `link` (`id`, `title`, `description`, `url`, `color`,`bg_url`, `online`,`type`,`createdAt`, `updatedAt`, `version`) VALUES (6, '菜鸟教程',  '慕课网', 'http://www.imooc.com', '#0F0','http://pic1.win4000.com/wallpaper/9/56fcdef02f263.jpg',true, '3',now(), now(), 0);
-INSERT INTO `link` (`id`, `title`, `description`, `url`, `color`,`bg_url`, `online`,`type`,`createdAt`, `updatedAt`, `version`) VALUES (7, '谷歌',  '慕课网', 'http://www.imooc.com', '#0F0','http://pic1.win4000.com/wallpaper/9/56fcdef02f263.jpg',true, '1',now(), now(), 0);
-INSERT INTO `link` (`id`, `title`, `description`, `url`, `color`,`bg_url`, `online`,`type`,`createdAt`, `updatedAt`, `version`) VALUES (8, '百度',  '慕课网', 'http://www.imooc.com', '#0F0','http://pic1.win4000.com/wallpaper/9/56fcdef02f263.jpg',true, '3',now(), now(), 0);
+INSERT INTO `link` (`id`, `title`, `description`, `url`, `color`,`bg_url`, `online`,`type`,`createdAt`, `updatedAt`, `version`) VALUES (1, '慕课网',  '慕课网', 'http://www.imooc.com', '#0F0','http://pic1.win4000.com/wallpaper/9/56fcdef02f263.jpg',true, '类别1',now(), now(), 0);
+INSERT INTO `link` (`id`, `title`, `description`, `url`, `color`,`bg_url`, `online`,`type`,`createdAt`, `updatedAt`, `version`) VALUES (2, '阮一峰',  '慕课网', 'http://www.imooc.com', '#0F0','http://pic1.win4000.com/wallpaper/9/56fcdef02f263.jpg',true, '类别1',now(), now(), 0);
+INSERT INTO `link` (`id`, `title`, `description`, `url`, `color`,`bg_url`, `online`,`type`,`createdAt`, `updatedAt`, `version`) VALUES (3, '张鑫旭',  '慕课网', 'http://www.imooc.com', '#0F0','http://pic1.win4000.com/wallpaper/9/56fcdef02f263.jpg',true, '类别2',now(), now(), 0);
+INSERT INTO `link` (`id`, `title`, `description`, `url`, `color`,`bg_url`, `online`,`type`,`createdAt`, `updatedAt`, `version`) VALUES (4, '掘金',  '慕课网', 'http://www.imooc.com', '#0F0','http://pic1.win4000.com/wallpaper/9/56fcdef02f263.jpg',true, '类别1',now(), now(), 0);
+INSERT INTO `link` (`id`, `title`, `description`, `url`, `color`,`bg_url`, `online`,`type`,`createdAt`, `updatedAt`, `version`) VALUES (5, 'segmentDefault',  '慕课网', 'http://www.imooc.com', '#0F0','http://pic1.win4000.com/wallpaper/9/56fcdef02f263.jpg',true, '类别2',now(), now(), 0);
+INSERT INTO `link` (`id`, `title`, `description`, `url`, `color`,`bg_url`, `online`,`type`,`createdAt`, `updatedAt`, `version`) VALUES (6, '菜鸟教程',  '慕课网', 'http://www.imooc.com', '#0F0','http://pic1.win4000.com/wallpaper/9/56fcdef02f263.jpg',true, '类别3',now(), now(), 0);
+INSERT INTO `link` (`id`, `title`, `description`, `url`, `color`,`bg_url`, `online`,`type`,`createdAt`, `updatedAt`, `version`) VALUES (7, '谷歌',  '慕课网', 'http://www.imooc.com', '#0F0','http://pic1.win4000.com/wallpaper/9/56fcdef02f263.jpg',true, '类别4',now(), now(), 0);
+INSERT INTO `link` (`id`, `title`, `description`, `url`, `color`,`bg_url`, `online`,`type`,`createdAt`, `updatedAt`, `version`) VALUES (8, '百度',  '慕课网', 'http://www.imooc.com', '#0F0','http://pic1.win4000.com/wallpaper/9/56fcdef02f263.jpg',true, '类别3',now(), now(), 0);
+INSERT INTO `link` (`id`, `title`, `description`, `url`, `color`,`bg_url`, `online`,`type`,`createdAt`, `updatedAt`, `version`) VALUES (9, 'smithChart',  '慕课网', 'http://www.imooc.com', '#0F0','http://pic1.win4000.com/wallpaper/9/56fcdef02f263.jpg',true, '旗下网站',now(), now(), 0);
+INSERT INTO `link` (`id`, `title`, `description`, `url`, `color`,`bg_url`, `online`,`type`,`createdAt`, `updatedAt`, `version`) VALUES (10, 'share',  '慕课网', 'http://www.imooc.com', '#0F0','http://pic1.win4000.com/wallpaper/9/56fcdef02f263.jpg',true, '旗下网站',now(), now(), 0);
+
+INSERT INTO `article` (`id`, `index`,`title`, `description`, `auth`, `color`,`bg_url`, `online`,`createdAt`, `updatedAt`, `version`) VALUES (1, '20180811webpack',  'webpack入门','webpack入门','作者1','#f00', 'http://pic1.win4000.com/wallpaper/9/56fcdef02f263.jpg',true,now(), now(), 0);
+INSERT INTO `article` (`id`, `index`,`title`, `description`, `auth`, `color`,`bg_url`, `online`,`createdAt`, `updatedAt`, `version`) VALUES (2, '20180811gulp',  'gulp入门','gulp入门','作者1','#f00', 'http://pic1.win4000.com/wallpaper/9/56fcdef02f263.jpg',true,now(), now(), 0);
+
+INSERT INTO `article_content` (`id`, `article_id`,`content`,`createdAt`, `updatedAt`, `version`) VALUES (1, 1,'webpack主要内容',now(), now(), 0);
+INSERT INTO `article_content` (`id`, `article_id`,`content`,`createdAt`, `updatedAt`, `version`) VALUES (2, 2,'gulp主要内容',now(), now(), 0);
+
+INSERT INTO `relation_tag` (`article_id`,`tag_id`,`createdAt`, `updatedAt`, `version`) VALUES ( 1,1,now(), now(), 0);
+INSERT INTO `relation_tag` (`article_id`,`tag_id`,`createdAt`, `updatedAt`, `version`) VALUES ( 1,3,now(), now(), 0);
+INSERT INTO `relation_tag` (`article_id`,`tag_id`,`createdAt`, `updatedAt`, `version`) VALUES ( 1,5,now(), now(), 0);
+INSERT INTO `relation_tag` (`article_id`,`tag_id`,`createdAt`, `updatedAt`, `version`) VALUES ( 1,6,now(), now(), 0);
+INSERT INTO `relation_tag` (`article_id`,`tag_id`,`createdAt`, `updatedAt`, `version`) VALUES ( 1,7,now(), now(), 0);
 
 

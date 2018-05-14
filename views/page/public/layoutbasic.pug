@@ -1,146 +1,138 @@
+extends layoutbasicempty
 include  ../../components/searchbox
-doctype html
-html
-    head
-        title= title
-        meta(charset='utf-8')
-        meta(name='Description',content='boke')
-        meta(name='viewport',content='width=device-width,initial-scale=1,user-scalable=no')
-        link(rel="Shortcut Icon" href="/images/avatar.jpeg")
-        link(rel='stylesheet', href='/stylesheets/style.css')
-    body
-        header.header.show#header-bind
-            div.pad-l-r.clear.max-width
-                div.left
-                    if(headerCustom)
-                        block header
-                    else
-                        a(href='/',title='首页')
-                            h1.main-title 笙笙不息
-                nav.nav.right
-                    ul.pc
-                        li.nav-btn.pc-search
-                            + searchbox
-                        li.nav-btn
-                            a(href='/') 首页
-                        //li.nav-btn
-                        //    a(href='/original') 原创
-                        //    ul.pc-sec-menu.white-card
-                        //        li
-                        //            a(href='/original?type=web') 前端
-                        //        li
-                        //            a(href='/original?type=server') 后端
-                        //        li
-                        //            a(href='/originalL') 归档
-                        //li.nav-btn
-                        //    a(href='/reprint') 转载
-                        //    ul.pc-sec-menu.white-card
-                        //        li
-                        //            a(href='/reprint?type=follow') 关注
-                        //        li
-                        //            a(href='/reprint?type=recommended') 推荐
-                        //        li
-                        //            a(href='/reprint/category') 归档
-
-                        li.nav-btn
-                            a(href='/original') 文章
-                            ul.pc-sec-menu.white-card
-                                li
-                                    a(href='/original') 原创
-                                li
-                                    a(href='/reprint?type=recommended') 推荐
-                                //li
-                                //    a(href='/reprint/category') 大厂团队
-                        li.nav-btn
-                            a(href='/lab') 实验室
-                            //ul.pc-sec-menu.white-card
-                                //li
-                                //    a(href='/lab/category') 归档
-
-                        li.nav-btn
-                            a.nav-btn(href='/tool') 工具
-                            ul.pc-sec-menu.white-card
-                                li
-                                    a(href='/tool?type=dev') 文档
-                                li
-                                    a(href='/tool?type=dev') 开发
-                                li
-                                    a(href='/tool?type=office') 办公
-                                li
-                                    a(href='/tool?type=life') 生活
-                                //li
-                                //    a(href='/tool/category') 归档
-                        li.nav-btn
-                            a(href='/lab') 本站归档
-                            ul.pc-sec-menu.white-card
-                                li
-                                    a(href='/tag') 标签大全
-                                li
-                                    a(href='/originalL') 原创文章
-                                li
-                                    a(href='/reprint/category') 推荐文章
-                                li
-                                    a(href='/lab/category') 实验室
-                                li
-                                    a(href='/tool/category') 实用工具
-                        li.nav-btn
-                            a.nav-btn(href='/about/me') 关于
-                            ul.pc-sec-menu.white-card
-                                li
-                                    a(href='/about/links') 友链
-                                li
-                                    a(href='/about/me') 站长
-                                li
-                                    a(href='/about/dynamic') 动态
-                                li
-                                    a(href='/about/resume') 简历
-                    div.mobile
-                        div.menu-btn#menu-bind-js
-                            i.menu-btn-top-line
-                            i.menu-btn-middle-line
-                            i.menu-btn-bottom-line
-                ul.menu-list#menu-list-bind-js.white-card
-                    li(style='display:block;width:100%')
+block body-container
+    header.header.show#header-bind
+        div.pad-l-r.clear.max-width
+            div.left
+                if(headerCustom)
+                    block header
+                else
+                    a(href='/',title='首页')
+                        h1.main-title 笙笙不息
+            nav.nav.right
+                ul.pc
+                    li.nav-btn.pc-search
                         + searchbox
-                    li
+                    li.nav-btn
                         a(href='/') 首页
-                    li
-                        a(href='/original') 原创
-                    li
-                        a(href='/reprint') 转载
-                    li
+                    //li.nav-btn
+                    //    a(href='/original') 原创
+                    //    ul.pc-sec-menu.white-card
+                    //        li
+                    //            a(href='/original?type=web') 前端
+                    //        li
+                    //            a(href='/original?type=server') 后端
+                    //        li
+                    //            a(href='/originalL') 归档
+                    //li.nav-btn
+                    //    a(href='/reprint') 转载
+                    //    ul.pc-sec-menu.white-card
+                    //        li
+                    //            a(href='/reprint?type=follow') 关注
+                    //        li
+                    //            a(href='/reprint?type=recommended') 推荐
+                    //        li
+                    //            a(href='/reprint/category') 归档
+
+                    li.nav-btn
+                        a(href='/original') 文章
+                        ul.pc-sec-menu.white-card
+                            li
+                                a(href='/original') 原创
+                            li
+                                a(href='/reprint?type=recommended') 推荐
+                            //li
+                            //    a(href='/reprint/category') 大厂团队
+                    li.nav-btn
                         a(href='/lab') 实验室
-                    li
-                        a(href='/tool') 工具库
-                    li
-                        a(href='/original?type=web') 原创/前端
-                    li
-                        a(href='/original?type=server') 原创/后端
-                    li
-                        a(href='/originalL') 原创/归档
-                    li
-                        a(href='/about') 关于我
-                    li
-                        a(href='/reprint?type=follow') 转载/关注
-                    li
-                        a(href='/reprint?type=recommended') 转载/推荐
-                    li
-                        a(href='/tool?type=sql') 资源工具/开发
-                    li
-                        a(href='/tool?type=sql') 资源工具/办公
-                    li
-                        a(href='/tool?type=sql') 资源工具/娱乐
-        div.main-container.max-width
-            block main-container
-        footer.footer.clear
-            div.max-width.pad-l-r.pc
-                //a(href="http://www.baidu.com") 链接
-                div(style='text-align:center')
-                    | Powered & Designed by Kongdepeng
-                    //| Copyright© 2018-2018 孔德鹏-笙笙不息
-                    a(href='http://www.miibeian.gov.cn') 京ICP备18005112号
-            div.mobile.show#footer-bind
-                a 移动端底部导航
-        script(src='https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js' defer)
-        script(src='/javascripts/main.js' defer)
-        block scriptInclude
+                        //ul.pc-sec-menu.white-card
+                            //li
+                            //    a(href='/lab/category') 归档
+
+                    li.nav-btn
+                        a.nav-btn(href='/tool') 工具
+                        ul.pc-sec-menu.white-card
+                            li
+                                a(href='/tool?type=dev') 文档
+                            li
+                                a(href='/tool?type=dev') 开发
+                            li
+                                a(href='/tool?type=office') 办公
+                            li
+                                a(href='/tool?type=life') 生活
+                            //li
+                            //    a(href='/tool/category') 归档
+                    li.nav-btn
+                        a(href='/lab') 本站归档
+                        ul.pc-sec-menu.white-card
+                            li
+                                a(href='/tag') 标签大全
+                            li
+                                a(href='/originalL') 原创文章
+                            li
+                                a(href='/reprint/category') 推荐文章
+                            li
+                                a(href='/lab/category') 实验室
+                            li
+                                a(href='/tool/category') 实用工具
+                    li.nav-btn
+                        a.nav-btn(href='/about/me') 关于
+                        ul.pc-sec-menu.white-card
+                            li
+                                a(href='/about/links') 友链
+                            li
+                                a(href='/about/me') 站长
+                            li
+                                a(href='/about/dynamic') 动态
+                            li
+                                a(href='/about/resume') 简历
+                div.mobile
+                    div.menu-btn#menu-bind-js
+                        i.menu-btn-top-line
+                        i.menu-btn-middle-line
+                        i.menu-btn-bottom-line
+            ul.menu-list#menu-list-bind-js.white-card
+                li(style='display:block;width:100%')
+                    + searchbox
+                li
+                    a(href='/') 首页
+                li
+                    a(href='/original') 原创
+                li
+                    a(href='/reprint') 转载
+                li
+                    a(href='/lab') 实验室
+                li
+                    a(href='/tool') 工具库
+                li
+                    a(href='/original?type=web') 原创/前端
+                li
+                    a(href='/original?type=server') 原创/后端
+                li
+                    a(href='/originalL') 原创/归档
+                li
+                    a(href='/about') 关于我
+                li
+                    a(href='/reprint?type=follow') 转载/关注
+                li
+                    a(href='/reprint?type=recommended') 转载/推荐
+                li
+                    a(href='/tool?type=sql') 资源工具/开发
+                li
+                    a(href='/tool?type=sql') 资源工具/办公
+                li
+                    a(href='/tool?type=sql') 资源工具/娱乐
+    div.main-container.max-width
+        block main-container
+    footer.footer.clear
+        div.max-width.pad-l-r.pc
+            //a(href="http://www.baidu.com") 链接
+            div(style='text-align:center')
+                | Powered & Designed by Kongdepeng
+                //| Copyright© 2018-2018 孔德鹏-笙笙不息
+                a(href='http://www.miibeian.gov.cn') 京ICP备18005112号
+        div.mobile.show#footer-bind
+            a 移动端底部导航
+    script(src='https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js' defer)
+    script(src='/javascripts/main.js' defer)
+    block scriptInclude

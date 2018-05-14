@@ -1,4 +1,6 @@
+const model = require('../../middleware/model')
 const originList = {};
+
 
 originList.recordRender = async function (ctx, next) {
     await ctx.render('page/statistics/originalList', {
@@ -129,39 +131,62 @@ originList.recordRender = async function (ctx, next) {
 };
 
 originList.listRender = async function (ctx, next) {
+    let list = [
+        {
+            href: 'http://www.baidu.com',
+            title: '标题一',
+            content: '百度，最大的中文搜索引擎',
+            count: 90,
+            bg: 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=310705049,841159833&fm=173&app=25&f=JPEG?w=218&h=146&s=C880DF185182C6EC16542CC6030010A0',
+            category: [{href: 'www.qq.com', name: 'QQ'}, {href: 'www.163.com', name: '网易'}]
+        }, {
+            href: 'http://www.baidu.com',
+            title: '标题一',
+            content: '百度，最大的中文搜索引擎',
+            count: 90,
+            bg: 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=310705049,841159833&fm=173&app=25&f=JPEG?w=218&h=146&s=C880DF185182C6EC16542CC6030010A0',
+            category: [{href: 'www.qq.com', name: 'QQ'}, {href: 'www.163.com', name: '网易'}]
+        }, {
+            href: 'http://www.baidu.com',
+            title: '标题一',
+            content: '百度，最大的中文搜索引擎',
+            count: 90,
+            bg: 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=310705049,841159833&fm=173&app=25&f=JPEG?w=218&h=146&s=C880DF185182C6EC16542CC6030010A0',
+            category: [{href: 'www.qq.com', name: 'QQ'}, {href: 'www.163.com', name: '网易'}]
+        }, {
+            href: 'http://www.baidu.com',
+            title: '标题一',
+            content: '百度，最大的中文搜索引擎',
+            count: 90,
+            bg: 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=310705049,841159833&fm=173&app=25&f=JPEG?w=218&h=146&s=C880DF185182C6EC16542CC6030010A0',
+            category: [{href: 'www.qq.com', name: 'QQ'}, {href: 'www.163.com', name: '网易'}]
+        }
+    ];
+    let result;
+    try {
+        result = await model.article.findAll();
+        if (result) {
+            list = result.map(x => {
+                return {
+                    href: x.index,
+                    title: x.title,
+                    content: x.description,
+                    count: x.click_count,
+                    bg: x.bg_url,
+                    category: [{href: 'www.qq.com', name: 'QQ'}, {href: 'www.163.com', name: '网易'}]
+                }
+            })
+        }
+    } catch (e) {
+
+    }
+
+    let cc = await model.article.findAll()
+    console.log(JSON.stringify(cc))
+    console.log(JSON.stringify(result))
     await ctx.render('page/article/original', {
         title: 'blog',
-        articleList: [
-            {
-                href: 'http://www.baidu.com',
-                title: '标题一',
-                content: '百度，最大的中文搜索引擎',
-                count: 90,
-                bg: 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=310705049,841159833&fm=173&app=25&f=JPEG?w=218&h=146&s=C880DF185182C6EC16542CC6030010A0',
-                category: [{href: 'www.qq.com', name: 'QQ'}, {href: 'www.163.com', name: '网易'}]
-            }, {
-                href: 'http://www.baidu.com',
-                title: '标题一',
-                content: '百度，最大的中文搜索引擎',
-                count: 90,
-                bg: 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=310705049,841159833&fm=173&app=25&f=JPEG?w=218&h=146&s=C880DF185182C6EC16542CC6030010A0',
-                category: [{href: 'www.qq.com', name: 'QQ'}, {href: 'www.163.com', name: '网易'}]
-            }, {
-                href: 'http://www.baidu.com',
-                title: '标题一',
-                content: '百度，最大的中文搜索引擎',
-                count: 90,
-                bg: 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=310705049,841159833&fm=173&app=25&f=JPEG?w=218&h=146&s=C880DF185182C6EC16542CC6030010A0',
-                category: [{href: 'www.qq.com', name: 'QQ'}, {href: 'www.163.com', name: '网易'}]
-            }, {
-                href: 'http://www.baidu.com',
-                title: '标题一',
-                content: '百度，最大的中文搜索引擎',
-                count: 90,
-                bg: 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=310705049,841159833&fm=173&app=25&f=JPEG?w=218&h=146&s=C880DF185182C6EC16542CC6030010A0',
-                category: [{href: 'www.qq.com', name: 'QQ'}, {href: 'www.163.com', name: '网易'}]
-            }
-        ],
+        articleList: list,
         category: [
             {href: '/', name: 'HTML', color: '#eee'},
             {href: '/', name: 'CSS', color: '#ee4'},

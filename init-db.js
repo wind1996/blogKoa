@@ -1,4 +1,5 @@
 const model = require('./middleware/model')
+require('./middleware/ref')
 const fs = require("mz/fs");
 
 (async () => {

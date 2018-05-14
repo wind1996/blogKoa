@@ -1,6 +1,5 @@
 const db = require('../middleware/db');
-//实验室
-module.exports = db.defineModel('link', {
+module.exports = db.defineModel('recommend', {
     id: {
         type: db.INTEGER,
         autoIncrement: true,
@@ -16,19 +15,12 @@ module.exports = db.defineModel('link', {
         type: db.STRING(100),
         allowNull: true
     },
-    color: {
-        type: db.STRING(100),
-        allowNull: true
-    },
-    type: {
-        type: db.STRING(100),
-        allowNull: true
-    },
-    bg_url: {
-        type: db.STRING(100),
-        allowNull: true
+    click_count: {
+        type: db.INTEGER,
+        defaultValue: 0
     },
     online: {
         type: db.BOOLEAN,
-    }
-});
+        defaultValue: false
+    },
+})

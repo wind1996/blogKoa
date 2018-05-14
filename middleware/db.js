@@ -11,10 +11,15 @@ function generatorId() {
 let sequelize = new Sequelize(config.database, config.username, config.password, {
     host: config.host,
     dialect: config.dialect,
+    port: config.port,
     pool: {
         max: 5,
         min: 0,
         idle: 10000
+    },
+    define: {
+        // 字段以下划线（_）来分割（默认是驼峰命名风格）
+        'underscored': true
     },
     timezone: '+8:00'
 });
@@ -83,6 +88,7 @@ function defineModel(name, attributes) {
     return sequelize.define(name, attrs, {
         tableName: name,
         timestamps: false,
+        underscored: true,
         hooks: {
             beforeValidate: function (obj) {
                 let now = Date.now();
