@@ -12,11 +12,13 @@ router.get('/', homeController.render)
 router.get('/original', originalListController.listRender);
 router.get('/originalL', originalListController.recordRender);
 router.get('/statistics', originalListController.getStatistics);
+router.get('/album', originalListController.listAlbum);
 
 router.get('/article/:year/:month/:day/:index', articleController.render);
 
 router.get('/reprint/category', reprintController.renderStatistics);
 router.get('/reprint', reprintController.render);
+router.get('/recommend', reprintController.recommend);
 router.get('/tool', toolController.render);
 router.get('/tool/category', toolController.categoryRender);
 router.get('/lab', labController.render);

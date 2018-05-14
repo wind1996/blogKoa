@@ -11,6 +11,10 @@ module.exports = db.defineModel('recommend', {
         type: db.STRING(200),
         allowNull: true
     },
+    source: {
+        type: db.STRING(200),
+        allowNull: true
+    },
     url: {
         type: db.STRING(100),
         allowNull: true
@@ -23,4 +27,4 @@ module.exports = db.defineModel('recommend', {
         type: db.BOOLEAN,
         defaultValue: false
     },
-})
+});

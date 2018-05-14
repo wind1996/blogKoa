@@ -1,0 +1,12 @@
+extends  ../public/layoutbasic
+include ../../components/card
+include ../../components/card-show-list
+include  ../../components/pagination
+include  ../../components/content-display
+block header
+    h1.main-title=content.title
+block main-container
+    div.pad
+        h2.sub-title 专辑
+block scriptInclude
+    //script(src='/javascripts/pagination.js' defer)

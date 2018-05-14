@@ -164,7 +164,21 @@ originList.listRender = async function (ctx, next) {
     ];
     let result;
     try {
-        result = await model.article.findAll();
+        result = await model.article.findAll({
+            attributes: ['index', 'title', 'description', 'description', 'bg_url', 'click_count'],
+            'include': [
+                {
+                    'model': model.relationship_tag,
+                    attributes: ['tag_id'],
+                    'include': [
+                        {
+                            'model': model.tag,
+                            attributes: ['title']
+                        }
+                    ]
+                }
+            ]
+        });
         if (result) {
             list = result.map(x => {
                 return {
@@ -173,7 +187,13 @@ originList.listRender = async function (ctx, next) {
                     content: x.description,
                     count: x.click_count,
                     bg: x.bg_url,
-                    category: [{href: 'www.qq.com', name: 'QQ'}, {href: 'www.163.com', name: '网易'}]
+                    category: x.relation_tags.map(xx => {
+                        return {
+                            href: `/tag/${xx.tag.key_word}`,
+                            name: xx.tag.title
+                        }
+
+                    })
                 }
             })
         }
@@ -181,9 +201,22 @@ originList.listRender = async function (ctx, next) {
 
     }
 
-    let cc = await model.article.findAll()
-    console.log(JSON.stringify(cc))
-    console.log(JSON.stringify(result))
+    let cc = await model.article.findAll({
+        attributes: ['index', 'title', 'description', 'description', 'bg_url'],
+        'include': [
+            {
+                'model': model.relationship_tag,
+                attributes: ['tag_id'],
+                'include': [
+                    {
+                        'model': model.tag,
+                        attributes: ['title', 'key_word']
+                    }
+                ]
+            }
+        ]
+    });
+    console.log(JSON.stringify(cc[0].relation_tags));
     await ctx.render('page/article/original', {
         title: 'blog',
         articleList: list,
@@ -201,5 +234,10 @@ originList.getStatistics = async function (ctx, next) {
     ctx.body = {
         data: 9999
     }
+};
+originList.listAlbum = async function (ctx, next) {
+    await ctx.render('page/article/album', {
+        title: '专辑'
+    })
 };
 module.exports = originList;

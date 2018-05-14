@@ -1,4 +1,5 @@
-var reprintController = {}
+const model = require('../../middleware/model')
+var reprintController = {};
 var data = {
     title: '博客-转载',
     reprintList: [
@@ -112,7 +113,6 @@ reprintController.render = async function (ctx, next) {
     const type = ctx.query.type ? ctx.query.type.split(',') : [];
     console.log(type.length === 0)
     if (type.length === 0) {
-
         await ctx.render('page/reprint/reprint', data);
     } else if (type.includes('follow')) {
         await ctx.render('page/reprint/reprint-follow', data);
@@ -123,5 +123,20 @@ reprintController.render = async function (ctx, next) {
 
 reprintController.renderStatistics = async function (ctx, next) {
     await ctx.render('page/statistics/reprintStatistics', data)
-}
-module.exports = reprintController
+};
+reprintController.recommend = async function (ctx, next) {
+    let result = await model.recommend.findAll();
+    console.log(result);
+    await ctx.render('page/reprint/reprint-recommended', {
+        articleRecommendList: result.map(x => {
+            return {
+                title: x.title,
+                from: x.source,
+                detail: x.description,
+                href: x.url
+            }
+        }),
+        pagination: data.pagination
+    })
+};
+module.exports = reprintController;
