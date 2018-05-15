@@ -1,15 +1,15 @@
-const model = require('../middleware/model')
+const model = require('../middleware/model');
+const baseServer = require('./baseServer');
+
 
 // calcData(result),定义映射规则
-class labServer {
-    async getLabList({page = -1, size = 10, calcData} = {}) {
+class labServer extends baseServer {
+    async getLabList(arg, {calcData} = {}) {
+        let options = this.filterParams(arg);
         let result;
         try {
             result = await model.lab.findAll(
-                page === -1 ? {} : {
-                    limit: size,
-                    offset: (page - 1) * size
-                }
+                options
             );
             if (typeof calcData === 'function') {
                 result = calcData(result)

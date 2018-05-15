@@ -43,14 +43,13 @@ block content
                 + buttons-level(otherWebsite)
 block aside
     div.pad(style='box-shadow: 0 0px 2px 1px #00000078;')
-        h2.aside-title 热门文章
-        ul.aside-list
-            li
-                a(href="#") lorem lorem lorem lorem lorem lorem
-            li
-                a(href="#") lorem lorem lorem lorem lorem lorem
-            li
-                a(href="#") lorem lorem lorem lorem
+        if(hotArticle && hotArticle.length)
+            h2.aside-title 热门文章
+            if(hotArticle && hotArticle.length)
+            ul.aside-list
+                each value in hotArticle
+                    li
+                        a(href=value.index)= value.title
         h2.aside-title 文章类别
         div(style='font-weight:200')
             + buttons-level(category)

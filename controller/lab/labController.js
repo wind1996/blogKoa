@@ -1,13 +1,11 @@
 var db = require('../../middleware/db');
-var model = require('../../middleware/model')
 var lab = {};
-let labModel = model.lab;
 
 lab.render = async function (ctx, next) {
     let list = await require('../../service/labServer')
         .getLabList({
             page: 1,
-            size: 20,
+            size: 20,},{
             calcData(list) {
                 return list.map(x => {
                     return {
@@ -29,18 +27,6 @@ lab.render = async function (ctx, next) {
             baseUrl: '/lab?page='
         }
     })
-};
-
-lab.read = async function (ctx, next) {
-    try {
-        var a = await labModel.findAll()
-    } catch (e) {
-        var a = 99
-    }
-    ctx.body = {
-        a: a
-    }
-
 };
 
 lab.categoryRender = async function (ctx, next) {

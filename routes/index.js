@@ -22,7 +22,6 @@ router.get('/recommend', reprintController.recommend);
 router.get('/tool', toolController.render);
 router.get('/tool/category', toolController.categoryRender);
 router.get('/lab', labController.render);
-router.get('/labread', labController.read);
 router.get('/lab/category', labController.categoryRender);
 router.get('/about/me', aboutController.meRender);
 router.get('/about/dynamic', aboutController.dynamicRender);

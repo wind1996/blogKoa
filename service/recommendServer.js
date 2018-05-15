@@ -2,12 +2,12 @@ const model = require('../middleware/model')
 const baseServer = require('./baseServer');
 
 // calcData(result),定义映射规则
-class tagServer extends baseServer{
-    async getTagList(arg, {calcData} = {}) {
+class recommendServer extends baseServer {
+    async getRecommendList(arg, {calcData} = {}) {
         let options = this.filterParams(arg);
         let result;
         try {
-            result = await model.tag.findAll(
+            result = await model.recommend.findAll(
                 options
             );
             if (typeof calcData === 'function') {
@@ -20,4 +20,4 @@ class tagServer extends baseServer{
     }
 }
 
-module.exports = new tagServer();
+module.exports = new recommendServer();

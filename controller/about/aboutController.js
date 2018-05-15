@@ -1,5 +1,4 @@
 const aboutController = {};
-const model = require('../../middleware/model');
 aboutController.meRender = async function (ctx, next) {
     await ctx.render('page/about/me', {
         title: '个人介绍',
@@ -40,7 +39,7 @@ aboutController.dynamicRender = async function (ctx, next) {
     })
 };
 aboutController.linksRender = async function (ctx, next) {
-    let list = await model.link.findAll();
+    let list = await require('../../service/linkServer').getLinkList();
     let type = new Set(list.map(x => x.type));
     let result_list = [];
     for (let value of type.values()) {

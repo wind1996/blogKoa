@@ -12,6 +12,7 @@ toolController.render = async function (ctx, next) {
     let list = await require('../../service/toolServer').getToolList({
         query,
         page,
+    }, {
         calcData(list) {
             return list.map(x => {
                 return {

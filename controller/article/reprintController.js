@@ -1,4 +1,3 @@
-const model = require('../../middleware/model')
 var reprintController = {};
 var data = {
     title: '博客-转载',
@@ -109,6 +108,7 @@ var data = {
         baseUrl: '/reprint?page='
     }
 };
+
 reprintController.render = async function (ctx, next) {
     const type = ctx.query.type ? ctx.query.type.split(',') : [];
     console.log(type.length === 0)
@@ -124,18 +124,23 @@ reprintController.render = async function (ctx, next) {
 reprintController.renderStatistics = async function (ctx, next) {
     await ctx.render('page/statistics/reprintStatistics', data)
 };
+
+
 reprintController.recommend = async function (ctx, next) {
-    let result = await model.recommend.findAll();
-    console.log(result);
+    let result = await require('../../service/recommendServer').getRecommendList({}, {
+        calcData(list) {
+            return list.map(x => {
+                return {
+                    title: x.title,
+                    from: x.source,
+                    detail: x.description,
+                    href: x.url
+                }
+            })
+        }
+    });
     await ctx.render('page/reprint/reprint-recommended', {
-        articleRecommendList: result.map(x => {
-            return {
-                title: x.title,
-                from: x.source,
-                detail: x.description,
-                href: x.url
-            }
-        }),
+        articleRecommendList: result,
         pagination: data.pagination
     })
 };

@@ -1,7 +1,4 @@
-const model = require('../../middleware/model')
 const originList = {};
-
-
 originList.recordRender = async function (ctx, next) {
     await ctx.render('page/statistics/originalList', {
         title: '文章归档',
@@ -130,57 +127,16 @@ originList.recordRender = async function (ctx, next) {
     })
 };
 
+/**
+ * 原创文章列表
+ * @param ctx
+ * @param next
+ * @returns {Promise<*>}
+ */
 originList.listRender = async function (ctx, next) {
-    let list = [
-        {
-            href: 'http://www.baidu.com',
-            title: '标题一',
-            content: '百度，最大的中文搜索引擎',
-            count: 90,
-            bg: 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=310705049,841159833&fm=173&app=25&f=JPEG?w=218&h=146&s=C880DF185182C6EC16542CC6030010A0',
-            category: [{href: 'www.qq.com', name: 'QQ'}, {href: 'www.163.com', name: '网易'}]
-        }, {
-            href: 'http://www.baidu.com',
-            title: '标题一',
-            content: '百度，最大的中文搜索引擎',
-            count: 90,
-            bg: 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=310705049,841159833&fm=173&app=25&f=JPEG?w=218&h=146&s=C880DF185182C6EC16542CC6030010A0',
-            category: [{href: 'www.qq.com', name: 'QQ'}, {href: 'www.163.com', name: '网易'}]
-        }, {
-            href: 'http://www.baidu.com',
-            title: '标题一',
-            content: '百度，最大的中文搜索引擎',
-            count: 90,
-            bg: 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=310705049,841159833&fm=173&app=25&f=JPEG?w=218&h=146&s=C880DF185182C6EC16542CC6030010A0',
-            category: [{href: 'www.qq.com', name: 'QQ'}, {href: 'www.163.com', name: '网易'}]
-        }, {
-            href: 'http://www.baidu.com',
-            title: '标题一',
-            content: '百度，最大的中文搜索引擎',
-            count: 90,
-            bg: 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=310705049,841159833&fm=173&app=25&f=JPEG?w=218&h=146&s=C880DF185182C6EC16542CC6030010A0',
-            category: [{href: 'www.qq.com', name: 'QQ'}, {href: 'www.163.com', name: '网易'}]
-        }
-    ];
-    let result;
-    try {
-        result = await model.article.findAll({
-            attributes: ['index', 'title', 'description', 'bg_url', 'click_count'],
-            'include': [
-                {
-                    'model': model.relationship_tag,
-                    attributes: ['tag_id'],
-                    'include': [
-                        {
-                            'model': model.tag,
-                            attributes: ['title']
-                        }
-                    ]
-                }
-            ]
-        });
-        if (result) {
-            list = result.map(x => {
+    let list = await require('../../service/articleServer').getArticleList({}, {
+        calcData(list) {
+            return list.map(x => {
                 return {
                     href: x.index,
                     title: x.title,
@@ -197,25 +153,8 @@ originList.listRender = async function (ctx, next) {
                 }
             })
         }
-    } catch (e) {
-
-    }
-    let cc = await model.article.findAll({
-        attributes: ['index', 'title', 'description', 'description', 'bg_url'],
-        'include': [
-            {
-                'model': model.relationship_tag,
-                attributes: ['tag_id'],
-                'include': [
-                    {
-                        'model': model.tag,
-                        attributes: ['title', 'key_word']
-                    }
-                ]
-            }
-        ]
     });
-    console.log(JSON.stringify(cc[0].relation_tags));
+
     await ctx.render('page/article/original', {
         title: 'blog',
         articleList: list,
@@ -228,7 +167,7 @@ originList.listRender = async function (ctx, next) {
             {href: '/', name: 'Express', color: '#9ee'},
         ]
     })
-}
+};
 originList.getStatistics = async function (ctx, next) {
     ctx.body = {
         data: 9999
