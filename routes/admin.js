@@ -1,5 +1,5 @@
 const router = require('koa-router')();
-const admin = require('../controller/admin/adminController')
+const admin = require('../controller/api/admin/adminController')
 
 router.prefix('/admin');
 

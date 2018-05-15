@@ -2,7 +2,9 @@ const model = require('../../middleware/model');
 exports.render = async function (ctx, next) {
     let promises = [
         model.article.findAll({
-            attributes: ['index', 'title', 'description', 'description', 'bg_url', 'click_count'],
+            limit: 4,
+            offset: 0,
+            attributes: ['index', 'title', 'description', 'bg_url', 'click_count'],
             'include': [
                 {
                     'model': model.relationship_tag,
@@ -16,8 +18,14 @@ exports.render = async function (ctx, next) {
                 }
             ]
         }),
-        model.recommend.findAll(),
-        model.tag.findAll()
+        model.recommend.findAll({
+            limit: 8,
+            offset: 0
+        }),
+        model.tag.findAll({
+            limit: 100,
+            offset: 0,
+        })
     ]
     let results = await Promise.all(promises)
     console.log(results)

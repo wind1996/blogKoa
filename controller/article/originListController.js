@@ -165,7 +165,7 @@ originList.listRender = async function (ctx, next) {
     let result;
     try {
         result = await model.article.findAll({
-            attributes: ['index', 'title', 'description', 'description', 'bg_url', 'click_count'],
+            attributes: ['index', 'title', 'description', 'bg_url', 'click_count'],
             'include': [
                 {
                     'model': model.relationship_tag,
@@ -200,7 +200,6 @@ originList.listRender = async function (ctx, next) {
     } catch (e) {
 
     }
-
     let cc = await model.article.findAll({
         attributes: ['index', 'title', 'description', 'description', 'bg_url'],
         'include': [
