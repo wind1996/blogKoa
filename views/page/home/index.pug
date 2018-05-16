@@ -18,17 +18,17 @@ block content
                             bg: value.bg,
                             category: value.category
                         })
-    div.pad
-        h2.sub-title 我的关注
-        if(reprintList && reprintList.length)
-            each  value in reprintList
-                div.col-card-little-auto
-                    div.middle-card
-                        + card-show-list({
-                            title: value.title,
-                            bg: value.bg,
-                            list: value.list
-                        })
+    if(reprintList && reprintList.length)
+        div.pad
+            h2.sub-title 我的关注
+                each  value in reprintList
+                    div.col-card-little-auto
+                        div.middle-card
+                            + card-show-list({
+                                title: value.title,
+                                bg: value.bg,
+                                list: value.list
+                            })
     div.pad
         h2.sub-title 文章推荐
         if(articleRecommendList && articleRecommendList.length)
