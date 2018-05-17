@@ -1,13 +1,13 @@
 exports.render = async function (ctx, next) {
     const homePageData = await Promise.all([
-        require('../../service/articleServer').getArticleList({
+        require('../../service/articleServer').getDataList({
             page: 1,
             size: 4
         }, {
             calcData(list) {
                 return list.map(x => {
                     return {
-                        href: x.index,
+                        href: `/article/${x.index}`,
                         title: x.title,
                         content: x.description,
                         count: x.click_count,
@@ -23,7 +23,7 @@ exports.render = async function (ctx, next) {
                 })
             }
         }),
-        require('../../service/recommendServer').getRecommendList({
+        require('../../service/recommendServer').getDataList({
             page: 1,
         }, {
             calcData(list) {
@@ -37,7 +37,7 @@ exports.render = async function (ctx, next) {
                 })
             }
         }),
-        require('../../service/tagServer').getTagList({
+        require('../../service/tagServer').getDataList({
             page: 1,
         }, {
             calcData(list) {
@@ -50,11 +50,11 @@ exports.render = async function (ctx, next) {
                 })
             }
         }),
-        require('../../service/articleServer').getArticleList({
+        require('../../service/articleServer').getDataList({
             page: 1,
             size: 10
         }),
-        require('../../service/linkServer').getLinkList({
+        require('../../service/linkServer').getDataList({
             page: 1,
             size: 10
         }, {

@@ -3,7 +3,7 @@ var lab = {};
 
 lab.render = async function (ctx, next) {
     let list = await require('../../service/labServer')
-        .getLabList({
+        .getDataList({
             page: 1,
             size: 20,},{
             calcData(list) {
@@ -30,7 +30,7 @@ lab.render = async function (ctx, next) {
 };
 
 lab.categoryRender = async function (ctx, next) {
-    let list = await require('../../service/labServer').getLabList() ||
+    let list = await require('../../service/labServer').getDataList() ||
         [
             {
                 href: 'http://demo.kongdepeng.com.cn/SmithChart/',

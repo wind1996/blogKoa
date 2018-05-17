@@ -134,11 +134,11 @@ originList.recordRender = async function (ctx, next) {
  * @returns {Promise<*>}
  */
 originList.listRender = async function (ctx, next) {
-    let list = await require('../../service/articleServer').getArticleList({}, {
+    let list = await require('../../service/articleServer').getDataList({}, {
         calcData(list) {
             return list.map(x => {
                 return {
-                    href: x.index,
+                    href: `/article/${x.index}`,
                     title: x.title,
                     content: x.description,
                     count: x.click_count,

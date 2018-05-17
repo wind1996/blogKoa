@@ -10,7 +10,7 @@ class linkServer extends baseServer {
      * @param calcData 对数据库插叙结果处理的函数，参数是查询结果，需要返回处理后的数组
      * @returns {Promise<*>}
      */
-    async getLinkList(arg,{calcData} = {}) {
+    async getDataList(arg, {calcData} = {}) {
         let options = this.filterParams(arg);
         let result;
         try {

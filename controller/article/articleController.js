@@ -1,12 +1,31 @@
 var article = {};
 article.render = async function (ctx, next) {
     const {year, month, day, index} = ctx.params
-    let str = (`${year}年${month}月${day}日${index}索引`);
+    let str = (`${year}/${month}/${day}/${index}`);
+    const result = await require('../../service/articleServer').getFullArticle(str);
+    /*ctx.body = {
+        11: aa
+    };*/
+    let pre_next = {}
+    if (result.pre) {
+        pre_next.pre = {
+            href: `/article/${result.pre.index}`,
+            title: result.pre.title
+        }
+    }
+    if (result.next) {
+        pre_next.next = {
+            href: `/article/${result.next.index}`,
+            title: result.next.title
+        }
+    }
     await ctx.render('page/article/article', {
         title: '博客-文章页',
         headerCustom: false,
         content: {
-            body: '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n' +
+            body:
+            `${JSON.stringify(result)}` +
+            '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n' +
             'tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n' +
             'quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n' +
             'consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n' +
@@ -27,19 +46,12 @@ article.render = async function (ctx, next) {
             'cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n' +
             'proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n' +
             '</p>',
-            title: 'webpack学习笔记',
-            pre: {
-                href: '/article/1/1/1/1',
-                title: '文章标题'
-            },
-            next: {
-                href: '/article/1/1/1/1',
-                title: '文章标题'
-            },
+            title: result.current.title,
+            ...pre_next,
             auth: '作者',
             created_time: '2018年10月2日',
             updated_time: '2018年11月9日',
-            footer: ["<h2>脚注HTML</h2>", '脚注html'],
+            footer: ["<h2>脚注HTML</h2>", `${str}`],
             category: [
                 {href: 'www.qq.com', name: '自动化'},
                 {href: 'www.qq.com', name: '自动化'},
@@ -56,6 +68,6 @@ article.render = async function (ctx, next) {
             {title: 'html入门', href: '/'},
             {title: 'node 入门', href: '/'}
         ]
-    })
+    });
 };
 module.exports = article;

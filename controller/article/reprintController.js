@@ -127,7 +127,7 @@ reprintController.renderStatistics = async function (ctx, next) {
 
 
 reprintController.recommend = async function (ctx, next) {
-    let result = await require('../../service/recommendServer').getRecommendList({}, {
+    let result = await require('../../service/recommendServer').getDataList({}, {
         calcData(list) {
             return list.map(x => {
                 return {

@@ -39,7 +39,7 @@ aboutController.dynamicRender = async function (ctx, next) {
     })
 };
 aboutController.linksRender = async function (ctx, next) {
-    let list = await require('../../service/linkServer').getLinkList();
+    let list = await require('../../service/linkServer').getDataList();
     let type = new Set(list.map(x => x.type));
     let result_list = [];
     for (let value of type.values()) {

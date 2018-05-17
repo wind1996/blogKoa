@@ -2,8 +2,8 @@ const model = require('../middleware/model')
 const baseServer = require('./baseServer');
 
 // calcData(result),定义映射规则
-class tagServer extends baseServer{
-    async getTagList(arg, {calcData} = {}) {
+class tagServer extends baseServer {
+    async getDataList(arg, {calcData} = {}) {
         let options = this.filterParams(arg);
         let result;
         try {

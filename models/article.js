@@ -8,7 +8,8 @@ module.exports = db.defineModel('article', {
     },
     index: {
         type: db.STRING(100),
-        allowNull: false
+        allowNull: false,
+        unique: true
     },
     title: {
         type: db.STRING(100)

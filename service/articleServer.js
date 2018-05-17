@@ -9,13 +9,13 @@ class articleServer extends baseServer {
      * @param arg
      * @param calcData
      */
-    async getArticleList(arg, {calcData} = {}) {
+    async getDataList(arg, {calcData} = {}) {
         let options = this.filterParams(arg);
         let result;
         try {
             result = await model.article.findAll(
                 Object.assign(options, {
-                    attributes: ['index', 'title', 'description', 'bg_url', 'click_count'],
+                    attributes: ['id', 'index', 'title', 'description', 'bg_url', 'click_count'],
                     'include': [
                         {
                             'model': model.relationship_tag,
@@ -37,6 +37,34 @@ class articleServer extends baseServer {
             result = []
         }
         return result;
+    }
+
+    async getFullArticle(keyWord, ctx) {
+        const list = await this.getDataList();
+        const result = {};
+        const currentIndex = list.findIndex((value) => {
+            return value.index === keyWord
+        });
+
+        if (currentIndex > -1) {
+            Object.assign(result, {
+                current: list[currentIndex]
+            });
+            if (currentIndex - 1 > 0) {
+                Object.assign(result, {
+                    pre: list[currentIndex - 1]
+                })
+            }
+            if (currentIndex + 1 < list.length) {
+                Object.assign(result, {
+                    next: list[currentIndex + 1]
+                })
+            }
+        }
+        Object.assign(result, {
+            currentContent: await model.article_content.find({where: {id: list[currentIndex].id}})
+        });
+        return result
     }
 }
 

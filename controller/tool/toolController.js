@@ -9,7 +9,7 @@ toolController.render = async function (ctx, next) {
             type
         })
     }
-    let list = await require('../../service/toolServer').getToolList({
+    let list = await require('../../service/toolServer').getDataList({
         query,
         page,
     }, {
@@ -46,7 +46,7 @@ toolController.categoryRender = async function (ctx, next) {
             type
         })
     }
-    let list = await require('../../service/toolServer').getToolList({
+    let list = await require('../../service/toolServer').getDataList({
         page,
         query
     });

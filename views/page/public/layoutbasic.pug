@@ -7,7 +7,7 @@ block body-container
                 if(headerCustom)
                     block header
                 else
-                    a(href='/',title='首页')
+                    a(href='/' title='首页')
                         h1.main-title 笙笙不息
             nav.nav.right
                 ul.pc
@@ -15,24 +15,6 @@ block body-container
                         + searchbox
                     li.nav-btn
                         a(href='/') 首页
-                    //li.nav-btn
-                    //    a(href='/original') 原创
-                    //    ul.pc-sec-menu.white-card
-                    //        li
-                    //            a(href='/original?type=web') 前端
-                    //        li
-                    //            a(href='/original?type=server') 后端
-                    //        li
-                    //            a(href='/originalL') 归档
-                    //li.nav-btn
-                    //    a(href='/reprint') 转载
-                    //    ul.pc-sec-menu.white-card
-                    //        li
-                    //            a(href='/reprint?type=follow') 关注
-                    //        li
-                    //            a(href='/reprint?type=recommended') 推荐
-                    //        li
-                    //            a(href='/reprint/category') 归档
                     li.nav-btn
                         a(href='/original') 文章
                         ul.pc-sec-menu.white-card
@@ -83,8 +65,6 @@ block body-container
                                 a(href='/about/me') 站长
                             li
                                 a(href='/about/dynamic') 动态
-                            li
-                                a(href='/about/resume') 简历
                 div.mobile
                     div.menu-btn#menu-bind-js
                         i.menu-btn-top-line
@@ -98,29 +78,29 @@ block body-container
                 li
                     a(href='/original') 原创
                 li
-                    a(href='/reprint') 转载
+                    a(href='/recommend')  推荐
+                li
+                    a(href='/album')  专辑
                 li
                     a(href='/lab') 实验室
                 li
+                    a(href='/lab') 实验室独立页
+                li
                     a(href='/tool') 工具库
                 li
-                    a(href='/original?type=web') 原创/前端
+                    a(href='/tool?type=dev') 开发文档
                 li
-                    a(href='/original?type=server') 原创/后端
+                    a(href='/tool?type=dev') 程序员
                 li
-                    a(href='/originalL') 原创/归档
+                    a(href='/tool?type=office') 办公工具
                 li
-                    a(href='/about') 关于我
+                    a(href='/tool?type=office') 娱乐工具
                 li
-                    a(href='/reprint?type=follow') 转载/关注
+                    a(href='/about/me') 关于站长
                 li
-                    a(href='/reprint?type=recommended') 转载/推荐
+                    a(href='/about/links') 友链
                 li
-                    a(href='/tool?type=sql') 资源工具/开发
-                li
-                    a(href='/tool?type=sql') 资源工具/办公
-                li
-                    a(href='/tool?type=sql') 资源工具/娱乐
+                    a(href='/about/dynamic') 动态
     div.main-container.max-width
         block main-container
     footer.footer.clear
