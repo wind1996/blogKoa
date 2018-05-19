@@ -2,7 +2,7 @@ exports.render = async function (ctx, next) {
     const homePageData = await Promise.all([
         require('../../service/articleServer').getDataList({
             page: 1,
-            size: 4
+            size: 6
         }, {
             calcData(list) {
                 return list.map(x => {
@@ -43,7 +43,7 @@ exports.render = async function (ctx, next) {
             calcData(list) {
                 return list.map(x => {
                     return {
-                        href: x.url,
+                        href: `/tag/${x.key_word}`,
                         name: x.title,
                         color: x.color
                     }

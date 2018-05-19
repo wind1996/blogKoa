@@ -127,7 +127,9 @@ reprintController.renderStatistics = async function (ctx, next) {
 
 
 reprintController.recommend = async function (ctx, next) {
-    let result = await require('../../service/recommendServer').getDataList({}, {
+    let page = Number(ctx.query.page) || 1;
+    let size = Number(ctx.query.size) || 6;
+    let result = await require('../../service/recommendServer').getDataList({page, size}, {
         calcData(list) {
             return list.map(x => {
                 return {
@@ -139,9 +141,15 @@ reprintController.recommend = async function (ctx, next) {
             })
         }
     });
+
     await ctx.render('page/reprint/reprint-recommended', {
         articleRecommendList: result,
-        pagination: data.pagination
+        pagination: {
+            currentPage: page,
+            baseUrl: `/recommend?size=${size}&page=`,
+            sumPage: Math.ceil(result.count / size),
+            size: 7
+        }
     })
 };
 module.exports = reprintController;

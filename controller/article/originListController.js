@@ -134,7 +134,9 @@ originList.recordRender = async function (ctx, next) {
  * @returns {Promise<*>}
  */
 originList.listRender = async function (ctx, next) {
-    let list = await require('../../service/articleServer').getDataList({}, {
+    let page = Number(ctx.query.page) || 1;
+    let size = Number(ctx.query.size) || 8;
+    let list = await require('../../service/articleServer').getDataList({page, size}, {
         calcData(list) {
             return list.map(x => {
                 return {
@@ -154,18 +156,14 @@ originList.listRender = async function (ctx, next) {
             })
         }
     });
-
     await ctx.render('page/article/original', {
-        title: 'blog',
+        title: '原创文章',
         articleList: list,
-        category: [
-            {href: '/', name: 'HTML', color: '#eee'},
-            {href: '/', name: 'CSS', color: '#ee4'},
-            {href: '/', name: 'JavaScript', color: '#e3e'},
-            {href: '/', name: 'Node js', color: '#e44'},
-            {href: '/', name: 'Koa', color: '#23e'},
-            {href: '/', name: 'Express', color: '#9ee'},
-        ]
+        paginate: {
+            currentPage: page,
+            baseUrl: `/original?size=${size}&page=`,
+            sumPage: Math.ceil(list.count / size)
+        }
     })
 };
 originList.getStatistics = async function (ctx, next) {
@@ -177,5 +175,39 @@ originList.listAlbum = async function (ctx, next) {
     await ctx.render('page/article/album', {
         title: '专辑'
     })
+};
+
+originList.getArticleByTag = async function (ctx, next) {
+    const {tag} = ctx.params;
+    let page = Number(ctx.query.page) || 1;
+    let size = Number(ctx.query.size) || 8;
+
+    let {rows, count} = await require('../../service/tagServer').getArticleListByTag({page, size}, tag);
+    let list = rows.map(x => {
+        return {
+            href: `/article/${x.article.index}`,
+            title: x.article.title,
+            content: x.article.description,
+            count: x.article.click_count,
+            bg: x.article.bg_url,
+            category: x.article.relation_tags.map(xx => {
+                return {
+                    href: `/tag/${xx.tag.key_word}`,
+                    name: xx.tag.title
+                }
+
+            })
+        }
+    })
+    await ctx.render('page/article/tag', {
+        title: `原创文章/${tag}`,
+        articleList: list,
+        paginate: {
+            currentPage: page,
+            baseUrl: `/tag/${tag}?size=${size}&page=`,
+            sumPage: Math.ceil(count / size)
+        }
+    })
+    // ctx.body = {list,count}
 };
 module.exports = originList;

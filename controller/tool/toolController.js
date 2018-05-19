@@ -1,8 +1,9 @@
-const toolController = {}
+const toolController = {};
 
 toolController.render = async function (ctx, next) {
     let type = ctx.query.type || '';
     let page = Number(ctx.query.page || 1);
+    let size = Number(ctx.query.size) || 8;
     let query = {};
     if (type) {
         Object.assign(query, {
@@ -12,6 +13,7 @@ toolController.render = async function (ctx, next) {
     let list = await require('../../service/toolServer').getDataList({
         query,
         page,
+        size
     }, {
         calcData(list) {
             return list.map(x => {
@@ -30,15 +32,16 @@ toolController.render = async function (ctx, next) {
         list: list,
         pagination: {
             size: 10,
-            sumPage: 100,
+            sumPage: Math.ceil(list.count / size),
             currentPage: page,
-            baseUrl: `/tool?type=${type}&page=`
+            baseUrl: `/tool?type=${type}&size=${size}&page=`
         }
     })
 };
 toolController.categoryRender = async function (ctx, next) {
     let type = ctx.query.type || '';
     let page = Number(ctx.query.page || 1);
+    let size = Number(ctx.query.size) || 8;
     let query = {};
 
     if (type) {
@@ -48,7 +51,8 @@ toolController.categoryRender = async function (ctx, next) {
     }
     let list = await require('../../service/toolServer').getDataList({
         page,
-        query
+        query,
+        size
     });
 
     await ctx.render('page/statistics/toolSummary', {
@@ -56,10 +60,10 @@ toolController.categoryRender = async function (ctx, next) {
         role: '开发',
         list: list,
         pagination: {
-            size: 10,
-            sumPage: 100,
+            size: size,
+            sumPage: Math.ceil(list.count / size),
             currentPage: page,
-            baseUrl: `/tool/category?type=${type}&page=`
+            baseUrl: `/tool/category?type=${type}&size=${size}&page=`
         }
     })
 };
