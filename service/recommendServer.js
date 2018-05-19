@@ -5,16 +5,22 @@ const baseServer = require('./baseServer');
 class recommendServer extends baseServer {
     async getDataList(arg, {calcData} = {}) {
         let options = this.filterParams(arg);
-        let result;
+        let queryResult, result;
         try {
-            result = await model.recommend.findAll(
+            queryResult = await model.recommend.findAndCountAll(
                 options
             );
             if (typeof calcData === 'function') {
-                result = calcData(result)
+                result = calcData(queryResult.rows);
+                result.count = queryResult.count
+            } else {
+                result = queryResult.rows;
+                result.count = queryResult.count
+
             }
         } catch (e) {
-            result = []
+            result = [];
+            result.count = 0
         }
         return result
     }

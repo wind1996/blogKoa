@@ -1,5 +1,6 @@
 const model = require('../middleware/model')
 const baseServer = require('./baseServer');
+const templateServer = require('./templateServer')
 
 // calcData(result),定义映射规则
 class articleServer extends baseServer {
@@ -11,11 +12,11 @@ class articleServer extends baseServer {
      */
     async getDataList(arg, {calcData} = {}) {
         let options = this.filterParams(arg);
-        let result;
+        let queryResult, result;
         try {
-            result = await model.article.findAll(
+            queryResult = await model.article.findAndCountAll(
                 Object.assign(options, {
-                    attributes: ['id', 'index', 'title', 'description', 'bg_url', 'click_count'],
+                    attributes: ['auth', 'updatedAt', 'id', 'index', 'title', 'description', 'bg_url'],
                     'include': [
                         {
                             'model': model.relationship_tag,
@@ -23,18 +24,36 @@ class articleServer extends baseServer {
                             'include': [
                                 {
                                     'model': model.tag,
-                                    attributes: ['title']
+                                    attributes: ['title', 'key_word']
                                 }
                             ]
                         }
-                    ]
+                    ],
+                    distinct: true
                 })
             );
             if (typeof calcData === 'function') {
-                result = calcData(result)
+                result = calcData(queryResult.rows);
+                result.count = queryResult.count
+
+            } else {
+                result = queryResult.rows;
+                result.count = queryResult.count
             }
+
         } catch (e) {
-            result = []
+            result = [];
+            result.count = 0
+        }
+        return result;
+    }
+
+    async getContentByArticleId(id) {
+        let result = []
+        try {
+            result = await model.article_content.find({where: {id: id}})
+        } catch (e) {
+
         }
         return result;
     }
@@ -45,12 +64,19 @@ class articleServer extends baseServer {
         const currentIndex = list.findIndex((value) => {
             return value.index === keyWord
         });
+        let templateAndContent = await Promise.all([
+            await templateServer.findTemplateByArticleId(list[currentIndex].id),
+            await this.getContentByArticleId(list[currentIndex].id)
+        ]);
+
+        Object.assign(result, {template: templateAndContent[0]});
+        Object.assign(result, {currentContent: templateAndContent[1]});
 
         if (currentIndex > -1) {
             Object.assign(result, {
                 current: list[currentIndex]
             });
-            if (currentIndex - 1 > 0) {
+            if (currentIndex > 0) {
                 Object.assign(result, {
                     pre: list[currentIndex - 1]
                 })
@@ -61,9 +87,6 @@ class articleServer extends baseServer {
                 })
             }
         }
-        Object.assign(result, {
-            currentContent: await model.article_content.find({where: {id: list[currentIndex].id}})
-        });
         return result
     }
 }

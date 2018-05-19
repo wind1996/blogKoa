@@ -6,18 +6,18 @@ const baseServer = require('./baseServer');
 class labServer extends baseServer {
     async getDataList(arg, {calcData} = {}) {
         let options = this.filterParams(arg);
-        let result;
+        let result, res;
         try {
-            result = await model.lab.findAll(
+            result = await model.lab.findAndCountAll(
                 options
             );
-            if (typeof calcData === 'function') {
-                result = calcData(result)
-            }
+            res = (typeof calcData === 'function') ? calcData(result.rows) : result.rows;
+            res.count = result.count;
         } catch (e) {
-            result = []
+            res = [];
+            res.count = 0
         }
-        return result
+        return res
     }
 }
 
