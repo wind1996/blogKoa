@@ -30,6 +30,7 @@ router.get('/about/resume', aboutController.linksRender);
 
 // 归档
 router.get('/tag', statisticsController.renderTagPage);
+router.get('/tag/:tag', originalListController.getArticleByTag);
 
 
 router.get('/string', async (ctx, next) => {
