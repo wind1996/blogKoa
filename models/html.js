@@ -12,12 +12,17 @@ module.exports = db.defineModel('html', {
         type: db.STRING(200),
         allowNull: true
     },
-    article: {
+    type: {
+        type: db.STRING(200),
+        allowNull: true
+    },
+    content: {
         type: db.STRING(200),
         allowNull: true
     },
     view_count: {
-        type: db.INTEGER
+        type: db.INTEGER,
+        defaultValue: 0
     },
     online: {
         type: db.BOOLEAN,
