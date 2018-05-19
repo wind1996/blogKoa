@@ -6,8 +6,8 @@ include ../../components/buttons-level
 
 block main-container
     div.pad
-        h2.sub-title
-            a(href='/tag') 按标签检索
+        div.pad-l-r
+            a(href='/tag') >按标签检索
     div.pad
         h2.sub-title 原创列表
         if(articleList && articleList.length)
@@ -15,6 +15,6 @@ block main-container
                 div.col-card-little-full-auto
                     div.middle-card
                         + main-card(value)
-    + pagination({currentPage: 15, baseUrl: '/original?page=', sumPage: 20, size: 7})
+    + pagination({currentPage: paginate.currentPage, baseUrl: paginate.baseUrl, sumPage: paginate.sumPage, size: 7})
 block scriptInclude
     script(src='/javascripts/pagination.js' defer)

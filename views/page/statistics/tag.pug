@@ -5,12 +5,11 @@ block main-container
     div.pad
         h2.sub-title= title
         ul.pad.tag-container
-            - var arr=new Array(30)
             each value,index in tagList
                 if value.color
                     li(style=`background:${value.color}`)
-                        a(href=value.url)=value.title
+                        a(href=`/tag/${value.key_word}`)=value.title
                 else
                     li
-                        a(href=value.url)=value.title
+                        a(href=`/tag/${value.key_word}`)=value.title
 block scriptInclude
