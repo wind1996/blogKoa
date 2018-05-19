@@ -22,14 +22,6 @@ module.exports = db.defineModel('article', {
         type: db.STRING(20),
         allowNull: true
     },
-    click_count: {
-        type: db.INTEGER,
-        defaultValue: 0
-    },
-    like_count: {
-        type: db.INTEGER,
-        defaultValue: 0
-    },
     allow_comments: {
         type: db.BOOLEAN,
         defaultValue: true
