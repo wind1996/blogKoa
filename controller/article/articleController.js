@@ -1,11 +1,9 @@
 var article = {};
+const util = require('../../util/util');
 article.render = async function (ctx, next) {
     const {year, month, day, index} = ctx.params
     let str = (`${year}/${month}/${day}/${index}`);
     const result = await require('../../service/articleServer').getFullArticle(str);
-    /*ctx.body = {
-        11: aa
-    };*/
     let pre_next = {}
     if (result.pre) {
         pre_next.pre = {
@@ -24,7 +22,7 @@ article.render = async function (ctx, next) {
         headerCustom: false,
         content: {
             body:
-            `${JSON.stringify(result)}` +
+            `${JSON.stringify(result.currentContent.content)}` +
             '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n' +
             'tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n' +
             'quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n' +
@@ -48,17 +46,17 @@ article.render = async function (ctx, next) {
             '</p>',
             title: result.current.title,
             ...pre_next,
-            auth: '作者',
-            created_time: '2018年10月2日',
-            updated_time: '2018年11月9日',
-            footer: ["<h2>脚注HTML</h2>", `${str}`],
-            category: [
-                {href: 'www.qq.com', name: '自动化'},
-                {href: 'www.qq.com', name: '自动化'},
-                {href: 'www.qq.com', name: '自动化'},
-                {href: 'www.163.com', name: 'Node'},
-                {href: 'www.163.com', name: 'node 后端'}
-            ]
+            auth: result.current.auth,
+            created_time: result.current.updatedAt,
+            updated_time: util.formatDate(result.current.updatedAt),
+            header: result.template.filter(x => x.position === 'top').map(x => x.html.content),
+            footer: result.template.filter(x => x.position === 'bottom').map(x => x.html.content),
+            category: result.current.relation_tags.map(x => {
+                return {
+                    href: `/tag/${x.tag.key_word}`,
+                    name: x.tag.title
+                }
+            })
         },
         recommendList: [
             {title: '入门webpack基础和实战', href: '/'},
