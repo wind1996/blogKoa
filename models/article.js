@@ -22,6 +22,10 @@ module.exports = db.defineModel('article', {
         type: db.STRING(20),
         allowNull: true
     },
+    article_type: {
+        type: db.STRING(20),
+        defaultValue: 'article'
+    },
     allow_comments: {
         type: db.BOOLEAN,
         defaultValue: true
