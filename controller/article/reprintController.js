@@ -1,4 +1,5 @@
-var reprintController = {};
+const {recommendAdapter} = require('../../common/Adapter');
+const recommendServer = require('../../service/recommendServer')
 var data = {
     title: '博客-转载',
     reprintList: [
@@ -109,47 +110,40 @@ var data = {
     }
 };
 
-reprintController.render = async function (ctx, next) {
-    const type = ctx.query.type ? ctx.query.type.split(',') : [];
-    console.log(type.length === 0)
-    if (type.length === 0) {
-        await ctx.render('page/reprint/reprint', data);
-    } else if (type.includes('follow')) {
-        await ctx.render('page/reprint/reprint-follow', data);
-    } else {
-        await ctx.render('page/reprint/reprint-recommended', data);
+const reprintController = {
+    async render(ctx, next) {
+        const type = ctx.query.type ? ctx.query.type.split(',') : [];
+        console.log(type.length === 0)
+        if (type.length === 0) {
+            await ctx.render('page/reprint/reprint', data);
+        } else if (type.includes('follow')) {
+            await ctx.render('page/reprint/reprint-follow', data);
+        } else {
+            await ctx.render('page/reprint/reprint-recommended', data);
+        }
+    },
+    async renderStatistics(ctx, next) {
+        await ctx.render('page/statistics/reprintStatistics', data)
+    },
+    async recommend(ctx, next) {
+        let page = Number(ctx.query.page) || 1;
+        let size = Number(ctx.query.size) || 6;
+        let result = await recommendServer.getDataList({page, size}, {
+            calcData(list) {
+                return recommendAdapter(list)
+            }
+        });
+
+        await ctx.render('page/reprint/reprint-recommended', {
+            articleRecommendList: result,
+            pagination: {
+                currentPage: page,
+                baseUrl: `/recommend?size=${size}&page=`,
+                sumPage: Math.ceil(result.count / size),
+                size: 7
+            }
+        })
     }
 };
 
-reprintController.renderStatistics = async function (ctx, next) {
-    await ctx.render('page/statistics/reprintStatistics', data)
-};
-
-
-reprintController.recommend = async function (ctx, next) {
-    let page = Number(ctx.query.page) || 1;
-    let size = Number(ctx.query.size) || 6;
-    let result = await require('../../service/recommendServer').getDataList({page, size}, {
-        calcData(list) {
-            return list.map(x => {
-                return {
-                    title: x.title,
-                    from: x.source,
-                    detail: x.description,
-                    href: x.url
-                }
-            })
-        }
-    });
-
-    await ctx.render('page/reprint/reprint-recommended', {
-        articleRecommendList: result,
-        pagination: {
-            currentPage: page,
-            baseUrl: `/recommend?size=${size}&page=`,
-            sumPage: Math.ceil(result.count / size),
-            size: 7
-        }
-    })
-};
 module.exports = reprintController;
