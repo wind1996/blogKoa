@@ -27,6 +27,8 @@ class articleServer extends baseServer {
                                     attributes: ['title', 'key_word']
                                 }
                             ]
+                        }, {
+                            'model': model.click
                         }
                     ],
                     distinct: true
@@ -40,7 +42,6 @@ class articleServer extends baseServer {
                 result = queryResult.rows;
                 result.count = queryResult.count
             }
-
         } catch (e) {
             result = [];
             result.count = 0
@@ -49,7 +50,7 @@ class articleServer extends baseServer {
     }
 
     async getContentByArticleId(id) {
-        let result = []
+        let result = [];
         try {
             result = await model.article_content.find({where: {id: id}})
         } catch (e) {
@@ -58,8 +59,29 @@ class articleServer extends baseServer {
         return result;
     }
 
-    async getFullArticle(keyWord, ctx) {
-        const list = await this.getDataList();
+    async getFullArticleByIndex(keyWord) {
+        return await  this.getFullArticle({}, keyWord)
+    }
+
+    async getFullArticleFilterType(type, keyword) {
+        return await  this.getFullArticle({type}, keyword)
+    };
+
+    /**
+     *
+     * @param tag 文章tag，默认无
+     * @param type 默认article
+     * @param keyWord 文章那索引
+     * @returns {Promise<{}>}
+     */
+    async getFullArticle({tag = null, type = null} = {}, keyWord) {
+        const query = {article_type: 'article'};
+        if (tag) {
+            Object.assign(query, {tag})
+        } else if (type) {
+            Object.assign(query, {article_type: type})
+        }
+        const list = await this.getDataList({query});
         const result = {};
         const currentIndex = list.findIndex((value) => {
             return value.index === keyWord
@@ -88,7 +110,7 @@ class articleServer extends baseServer {
             }
         }
         return result
-    }
+    };
 }
 
 module.exports = new articleServer();
