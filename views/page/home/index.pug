@@ -49,7 +49,7 @@ block aside
             ul.aside-list
                 each value in hotArticle
                     li
-                        a(href=value.index)= value.title
+                        a(href=`/article/${value.index}`)= value.title
         h2.aside-title 文章类别
         div(style='font-weight:200')
             + buttons-level(category)
