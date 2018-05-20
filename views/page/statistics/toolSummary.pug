@@ -8,8 +8,9 @@ block main-container
         a.mar(href='/tool/category?type=dev') 开发归档
         a.mar(href='/tool/category?type=office') 办公归档
         a.mar(href='/tool/category?type=life') 娱乐归档
+        a.mar(href='/tool/category?type=txt') 文档
     div.pad
-        h2.sub-title=`实用工具归档`
+        h2.sub-title=`资源工具${role ? '-' + role : ''}归档`
         div.pad
             + table(list,[
                 {name: '序号', key: 'index'},
