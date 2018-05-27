@@ -3,10 +3,12 @@
  * @type {{dialect: string, database: string, username: string, password: string, host: string, port: number}}
  */
 module.exports = {
-    dialect: 'mysql',
-    database: 'blog',
-    username: 'root',
-    password: '',
-    host: 'localhost',
-    port: 3308
+    db_config: {
+        dialect: 'mysql',
+        database: 'blog',
+        username: 'root',
+        password: '',
+        host: 'localhost',
+        port: 3306
+    }
 };
