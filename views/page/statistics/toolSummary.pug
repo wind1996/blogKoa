@@ -20,11 +20,6 @@ block main-container
                 {name: '类型', key: 'type'},
                 {name: '背景图片', key: 'bg_url', isLink: true}
             ])
-    + pagination({
-        currentPage: pagination.currentPage,
-        baseUrl: pagination.baseUrl,
-        sumPage: pagination.sumPage,
-        size: pagination.size
-    })
+    + pagination(pagination)
 block scriptInclude
     script(src='/javascripts/pagination.js' defer)
