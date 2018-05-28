@@ -675,6 +675,11 @@ a:hover {
 /*副标题、分类样式*/
 .main-card-effect ul.card-content-category {
     opacity: 0.1;
+    white-space: nowrap;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .main-card-effect:hover ul.card-content-category {
