@@ -1,10 +1,12 @@
-const toolServer = require('../../service/toolServer')
+const toolServer = require('../../service/toolServer');
+const pageConfig = require('../../config/config').tool;
+
 
 const toolController = {
     async render(ctx, next) {
         let type = ctx.query.type || '';
         let page = Number(ctx.query.page || 1);
-        let size = Number(ctx.query.size) || 8;
+        let size = Number(ctx.query.size) || pageConfig.pageSize;
         let query = {};
         let typeToTxt = {
             dev: '开发',
@@ -48,9 +50,14 @@ const toolController = {
     async categoryRender(ctx, next) {
         let type = ctx.query.type || '';
         let page = Number(ctx.query.page || 1);
-        let size = Number(ctx.query.size) || 40;
+        let size = Number(ctx.query.size) || pageConfig.statisticsSize;
         let query = {};
-
+        let typeToTxt = {
+            dev: '开发',
+            life: '生活',
+            office: '办公',
+            txt: '文档'
+        };
         if (type) {
             Object.assign(query, {
                 type
@@ -64,10 +71,10 @@ const toolController = {
 
         await ctx.render('page/statistics/toolSummary', {
             title: '博客-资源分类汇总',
-            role: '',
-            list: list,
+            role: typeToTxt[type],
+            list,
             pagination: {
-                size: size,
+                size: 7,
                 sumPage: Math.ceil(list.count / size),
                 currentPage: page,
                 baseUrl: `/tool/category?type=${type}&size=${size}&page=`

@@ -9,7 +9,27 @@ const baseConfig = {
         password: '',
         host: '',
         port: 3306,
+    },
+    home: {
+        originSize: 6,      //首页原创列表显示数量
+        recommendSize: 6,       //首页推荐列表显示数量
+        hotOriginSize: 10,       //首页热门原创列表显示数量
+        LinkSize: 10       //首页热门原创列表显示数量
+    },
+    article: {
+        originSize: 12,      //首页原创列表显示数量
+        recommendSize: 6,       //首页推荐列表显示数量
+        statisticsSize: 30    //推荐统计列表显示数量
+    },
+    lab: {
+        pageSize: 12,       //实验室页显示数量
+        statisticsSize: 30      //统计列表显示数量
+    },
+    tool: {
+        pageSize: 12,           //工具页显示数量
+        statisticsSize: 30   //统计列表显示数量
     }
+
 };
 const config = {...baseConfig};
 const environment = (process.env.NODE_ENV === undefined) ? 'dev' : process.env.NODE_ENV.replace(/\s/g, "").toLowerCase();

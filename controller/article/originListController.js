@@ -1,6 +1,7 @@
 const {originListAdapter, articleThroughTagAdapter} = require('../../common/Adapter');
 const articleServer = require('../../service/articleServer');
 const tagServer = require('../../service/tagServer');
+const pageConfig = require('../../config/config').article;
 /**
  * 原创文章列表
  * @param ctx
@@ -137,7 +138,7 @@ const originList = {
     },
     async listRender(ctx) {
         let page = Number(ctx.query.page) || 1;
-        let size = Number(ctx.query.size) || 18;
+        let size = Number(ctx.query.size) || pageConfig.originSize;
         let list = await articleServer.getDataList({
             page, size, query: {
                 article_type: 'article'

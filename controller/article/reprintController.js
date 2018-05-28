@@ -1,5 +1,7 @@
-const {recommendAdapter} = require('../../common/Adapter');
-const recommendServer = require('../../service/recommendServer')
+const {recommendAdapter,recommendStatisticsAdapter} = require('../../common/Adapter');
+const recommendServer = require('../../service/recommendServer');
+const pageConfig = require('../../config/config').article;
+
 var data = {
     title: '博客-转载',
     reprintList: [
@@ -113,7 +115,7 @@ var data = {
 const reprintController = {
     async render(ctx, next) {
         const type = ctx.query.type ? ctx.query.type.split(',') : [];
-        console.log(type.length === 0)
+        console.log(type.length === 0);
         if (type.length === 0) {
             await ctx.render('page/reprint/reprint', data);
         } else if (type.includes('follow')) {
@@ -123,11 +125,27 @@ const reprintController = {
         }
     },
     async renderStatistics(ctx, next) {
-        await ctx.render('page/statistics/reprintStatistics', data)
+        const page = Number(ctx.query.page) || 1;
+        const size = Number(ctx.query.size) || pageConfig.statisticsSize;
+
+        const result = await recommendServer.getDataList({page, size}, {
+            calcData(list) {
+                return recommendStatisticsAdapter(list)
+            }
+        });
+        await ctx.render('page/statistics/reprintStatistics', {
+            recommendList: result,
+            pagination: {
+                currentPage: page,
+                baseUrl: `/reprint/category?size=${size}&page=`,
+                sumPage: Math.ceil(result.count / size),
+                size: 7
+            }
+        })
     },
     async recommend(ctx, next) {
         let page = Number(ctx.query.page) || 1;
-        let size = Number(ctx.query.size) || 6;
+        let size = Number(ctx.query.size) || pageConfig.recommendSize;
         let result = await recommendServer.getDataList({page, size}, {
             calcData(list) {
                 return recommendAdapter(list)

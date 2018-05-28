@@ -3,32 +3,34 @@ const articleServer = require('../../service/articleServer');
 const recommendServer = require('../../service/recommendServer');
 const tagServer = require('../../service/tagServer');
 const linkServer = require('../../service/linkServer');
+const pageConfig = require('../../config/config').home;
 module.exports = {
     async render(ctx, next) {
         const homePageData = await Promise.all([
             articleServer.getDataList({
                 page: 1,
-                size: 6,
+                size: pageConfig.originSize,
                 query: {
                     article_type: 'article'
                 }
             }),
             recommendServer.getDataList({
                 page: 1,
+                size: pageConfig.recommendSize,
             }),
             tagServer.getDataList({
-                page: 1,
+                page: 1
             }),
             articleServer.getDataList({
                 page: 1,
-                size: 10,
+                size: pageConfig.hotOriginSize,
                 query: {
                     article_type: 'article'
                 }
             }),
             linkServer.getDataList({
                 page: 1,
-                size: 10
+                size: pageConfig.LinkSize
             }),
         ]);
         await ctx.render('page/home/index', {
