@@ -768,7 +768,7 @@ a:hover {
     .articleStatistics .text-description {
         width: 100px;
         float: left;
-        background: red;
+        /*background: red;*/
     }
 
     .chart {
