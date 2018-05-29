@@ -7,6 +7,7 @@ const originalListController = require('../controller/article/originListControll
 const aboutController = require('../controller/about/aboutController');
 const articleController = require('../controller/article/articleController');
 const statisticsController = require('../controller/statistics/statisticsController');
+const labPageController = require('../controller/lab/labPageController');
 
 router.get('/', homeController.render);
 router.get('/original', originalListController.listRender);
@@ -17,11 +18,12 @@ router.get('/album', originalListController.listAlbum);
 router.get('/article/:year/:month/:day/:index', articleController.render);
 
 router.get('/reprint/category', reprintController.renderStatistics);
-router.get('/reprint', reprintController.render);
+// router.get('/reprint', reprintController.render);
 router.get('/recommend', reprintController.recommend);
 router.get('/tool', toolController.render);
 router.get('/tool/category', toolController.categoryRender);
 router.get('/lab', labController.render);
+router.get('/lab/main', labPageController.render);
 router.get('/lab/category', labController.categoryRender);
 router.get('/about/me', aboutController.meRender);
 router.get('/about/dynamic', aboutController.dynamicRender);
