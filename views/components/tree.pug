@@ -1,12 +1,12 @@
 mixin tree(list)
     div.tree
         ul.year.show
-            if(list&&list.constructor===[].constructor)
+            if(list && list.constructor === [].constructor)
                 each year in list
                     li
                         h2.sub-title-no-line.mouse#yearButton= `${year.year}年`
                         ul.mon-list.show
-                            if year.monthList&&year.monthList.constructor===[].constructor
+                            if year.monthList && year.monthList.constructor === [].constructor
                                 each month in year.monthList
                                     li
                                         - var size=0 ;if(month.article&&month.article.constructor===[].constructor) size=month.article.length
@@ -15,6 +15,6 @@ mixin tree(list)
                                             if month.article
                                                 each article in month.article
                                                     li
-                                                        span.adabab=`${article.date}日：`
-                                                        a(href=`${article.href}` title=`${article.title}`)= `${article.title}`
+                                                        span.adabab=`${(/^(\d+)\/(\d+)\/(\d+)/.exec(article.index))[3]}日：`
+                                                        a(href=`/article/${article.index}` title=`${article.title}`)= `${article.title}`
     script(src='/javascripts/tree.js' defer)
