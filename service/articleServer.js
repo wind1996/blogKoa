@@ -5,12 +5,12 @@ const templateServer = require('./templateServer')
 // calcData(result),定义映射规则
 class articleServer extends baseServer {
     /**
-     *
+     *获取文章列表，包括对应分类
      * @returns {Promise<*>}
      * @param arg
      * @param calcData
      */
-    async getDataList(arg, {calcData} = {}) {
+    async getDataListWithTagCount(arg, {calcData} = {}) {
         let options = this.filterParams(arg);
         let queryResult, result;
         try {
@@ -49,20 +49,53 @@ class articleServer extends baseServer {
         return result;
     }
 
-    async getContentByArticleId(id) {
-        let result = [];
+    /**
+     * 获取文章列表
+     * @returns {Promise<*>}
+     */
+    async getDataListAndCount() {
+        let result;
         try {
-            result = await model.article_content.find({where: {id: id}})
+            result = await model.article.findAndCountAll({
+                order: [
+                    ['createdAt', "DESC"]
+                ]
+            })
         } catch (e) {
-
+            result.roes = [];
+            result.count = 0
         }
-        return result;
+        return result
     }
 
+    /**
+     * 根据文章id获取文章内容
+     * @param id
+     * @returns {Promise<Array>}
+     */
+    async getContentByArticleId(id) {
+        try {
+            return await model.article_content.find({where: {id: id}})
+        } catch (e) {
+            return []
+        }
+    }
+
+    /**
+     * 获取文章类型为article的文章
+     * @param keyWord
+     * @returns {Promise<{}>}
+     */
     async getFullArticleByIndex(keyWord) {
         return await  this.getFullArticle({}, keyWord)
     }
 
+    /**
+     * 获取文章类型，并对类型进行筛选
+     * @param type
+     * @param keyword
+     * @returns {Promise<{}>}
+     */
     async getFullArticleFilterType(type, keyword) {
         return await  this.getFullArticle({type}, keyword)
     };
@@ -81,7 +114,7 @@ class articleServer extends baseServer {
         } else if (type) {
             Object.assign(query, {article_type: type})
         }
-        const list = await this.getDataList({query});
+        const list = await this.getDataListWithTagCount({query});
         const result = {};
         const currentIndex = list.findIndex((value) => {
             return value.index === keyWord
@@ -111,6 +144,23 @@ class articleServer extends baseServer {
         }
         return result
     };
+
+    async getReadCountSub() {
+        const rows = (await this.getReadCount()).rows;
+        let sum = 0;
+        for (let value of rows) {
+            sum += value.click_count
+        }
+        return sum;
+    }
+
+    async getReadCount() {
+        try {
+            return await model.click.findAndCountAll()
+        } catch (e) {
+            return {rows: [], count: 0}
+        }
+    }
 }
 
 module.exports = new articleServer();

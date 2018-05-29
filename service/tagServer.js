@@ -2,19 +2,22 @@ const model = require('../middleware/model')
 const baseServer = require('./baseServer');
 
 // calcData(result),定义映射规则
-class tagServer extends baseServer {
-    async getDataList(arg, {calcData} = {}) {
+class tagServerAndCount extends baseServer {
+    async getDataListAndCount(arg, {calcData} = {}) {
         let options = this.filterParams(arg);
         let result;
         try {
-            result = await model.tag.findAll(
+            result = await model.tag.findAndCountAll(
                 options
             );
             if (typeof calcData === 'function') {
-                result = calcData(result)
+                result.rows = calcData(result.rows)
             }
         } catch (e) {
-            result = []
+            result = {
+                rows: [],
+                count: 0
+            }
         }
         return result
     }
@@ -22,31 +25,7 @@ class tagServer extends baseServer {
     async getArticleListByTag(arg, key_word) {
 
         let tag_id = (await model.tag.find({
-            where: {key_word},
-            // attributes: [],
-            // 'include': [
-            // {
-            //        attributes: ['article_id'],
-            //       'model': model.relationship_tag,
-            // 'include': [
-            //     {
-            //         'model': model.article,
-            //         'include': [
-            //             {
-            //                 'model': model.relationship_tag,
-            //                 attributes: ['tag_id'],
-            //                 'include': [
-            //                     {
-            //                         // attributes: [''],
-            //                         'model': model.tag,
-            //                     }
-            //                 ]
-            //             }
-            //         ]
-            //     }
-            // ]
-            //   }
-            // ]
+            where: {key_word}
         })).id;
         arg.query = {tag_id}
         let options = this.filterParams(arg);
@@ -77,4 +56,4 @@ class tagServer extends baseServer {
     }
 }
 
-module.exports = new tagServer();
+module.exports = new tagServerAndCount();

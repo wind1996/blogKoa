@@ -7,7 +7,7 @@ const pageConfig = require('../../config/config').home;
 module.exports = {
     async render(ctx, next) {
         const homePageData = await Promise.all([
-            articleServer.getDataList({
+            articleServer.getDataListWithTagCount({
                 page: 1,
                 size: pageConfig.originSize,
                 query: {
@@ -18,10 +18,10 @@ module.exports = {
                 page: 1,
                 size: pageConfig.recommendSize,
             }),
-            tagServer.getDataList({
+            tagServer.getDataListAndCount({
                 page: 1
             }),
-            articleServer.getDataList({
+            articleServer.getDataListWithTagCount({
                 page: 1,
                 size: pageConfig.hotOriginSize,
                 query: {
@@ -38,7 +38,7 @@ module.exports = {
             originalList: originListAdapter(homePageData[0]),
             articleRecommendList: recommendAdapter(homePageData[1]),
             otherWebsite: linkAdapter(homePageData[4]),
-            category: tagAdapter(homePageData[2]),
+            category: tagAdapter(homePageData[2].rows),
             hotArticle: homePageData[3]
         })
     }
