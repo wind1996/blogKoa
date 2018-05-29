@@ -104,6 +104,17 @@ class Adapter {
         })
     }
 
+    recommendStatisticsAdapter(data) {
+        return data.map(x => {
+            return {
+                title: x.title,
+                from: x.source,
+                detail: x.description,
+                href: x.url
+            }
+        })
+    }
+
     tagAdapter(data) {
         return data.map(x => {
             return {
