@@ -14,6 +14,7 @@ module.exports = db.defineModel('relation_html', {
     },
     position: {
         type: db.STRING(10),
+        defaultValue: "bottom"
     },
     order: {
         type: db.INTEGER,

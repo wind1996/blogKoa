@@ -22,13 +22,14 @@ module.exports = db.defineModel('tool', {
     },
     online: {
         type: db.BOOLEAN,
+        defaultValue:false
     },
-    click_count: {
+    /*click_count: {
         type: db.INTEGER,
     },
     like_count: {
         type: db.INTEGER,
-    },
+    },*/
     type:{
         type: db.STRING(100),
         allowNull: true

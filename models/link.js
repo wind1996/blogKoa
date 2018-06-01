@@ -30,5 +30,6 @@ module.exports = db.defineModel('link', {
     },
     online: {
         type: db.BOOLEAN,
+        defaultValue:false
     }
 });

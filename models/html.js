@@ -20,16 +20,8 @@ module.exports = db.defineModel('html', {
         type: db.STRING(200),
         allowNull: true
     },
-    view_count: {
-        type: db.INTEGER,
-        defaultValue: 0
-    },
     online: {
         type: db.BOOLEAN,
         defaultValue: true
-    },
-    isDelete: {
-        type: db.BOOLEAN,
-        defaultValue: false
     }
 });

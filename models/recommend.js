@@ -19,10 +19,6 @@ module.exports = db.defineModel('recommend', {
         type: db.STRING(100),
         allowNull: true
     },
-    click_count: {
-        type: db.INTEGER,
-        defaultValue: 0
-    },
     online: {
         type: db.BOOLEAN,
         defaultValue: false

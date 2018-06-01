@@ -7,7 +7,10 @@ module.exports = db.defineModel('tag', {
         primaryKey: true,
         unique: true
     },
-    title: db.STRING(100),
+    title:{
+        type:db.STRING(100),
+        allowNull: true
+    },
     description: {
         type: db.STRING(200),
         allowNull: true
@@ -18,11 +21,14 @@ module.exports = db.defineModel('tag', {
     },
     color: {
         type: db.STRING(200),
+        allowNull: true
     },
     online: {
         type: db.BOOLEAN,
+        allowNull: true
     },
     type: {
-        type: db.STRING(200)
+        type: db.STRING(200),
+        allowNull: true
     }
 });

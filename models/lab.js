@@ -26,11 +26,6 @@ module.exports = db.defineModel('lab', {
     },
     online: {
         type: db.BOOLEAN,
-    },
-    click_count: {
-        type: db.INTEGER,
-    },
-    like_count: {
-        type: db.INTEGER,
+        defaultValue: false
     }
 });
