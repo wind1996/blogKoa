@@ -54,6 +54,71 @@ class tagServerAndCount extends baseServer {
         });
         return {rows: result.rows, count: result.count}
     }
+
+    async getById(id) {
+        try {
+            return await model.tag.findOne({where: {id}})
+        } catch (e) {
+            return null;
+        }
+    }
+
+    async add(obj) {
+        try {
+            return await  model.tag.create(obj);
+        } catch (e) {
+            return null
+        }
+    }
+
+    async update(params, id) {
+        try {
+            return await  model.tag.update(params, {where: {id}});
+        } catch (e) {
+            return null
+        }
+    }
+
+    async deleteById(id) {
+        try {
+            return await  model.tag.destroy({where: {id}});
+        } catch (e) {
+            return null
+        }
+    }
+
+    async addTagForArticle(obj) {
+        try {
+            return await  model.relationship_tag.create(obj);
+        } catch (e) {
+            return null
+        }
+    }
+
+    async removeTagForArticle(id) {
+        try {
+            return await  model.relationship_tag.destroy({where: {id}});
+        } catch (e) {
+            return null
+        }
+    }
+
+    async getAllTagForArticle(article_id) {
+        try {
+            return await  model.relationship_tag.findAll({
+                where: {article_id},
+                attributes: ['tag_id'],
+                'include': [
+                    {
+                        'model': model.tag,
+                        attributes: ['title', 'key_word']
+                    }
+                ]
+            });
+        } catch (e) {
+            return null
+        }
+    }
 }
 
 module.exports = new tagServerAndCount();

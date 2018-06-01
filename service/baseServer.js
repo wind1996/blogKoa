@@ -12,7 +12,7 @@ class baseServer {
         let options = {};
         if (page > 0 && size > 0) {
             Object.assign(options, {
-                limit: size,
+                limit: Number(size),
                 offset: (page - 1) * size
             })
         }

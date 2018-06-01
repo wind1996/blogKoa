@@ -1,4 +1,4 @@
-const model = require('../middleware/model')
+const model = require('../middleware/model');
 const baseServer = require('./baseServer');
 
 // calcData(result),定义映射规则
@@ -23,6 +23,38 @@ class recommendServer extends baseServer {
             result.count = 0
         }
         return result
+    }
+
+    async getById(id) {
+        try {
+            return await model.recommend.findOne({where: {id}})
+        } catch (e) {
+            return null;
+        }
+    }
+
+    async add(obj) {
+        try {
+            return await  model.recommend.create(obj);
+        } catch (e) {
+            return null
+        }
+    }
+
+    async update(params, id) {
+        try {
+            return await  model.recommend.update(params, {where: {id}});
+        } catch (e) {
+            return null
+        }
+    }
+
+    async deleteById(id) {
+        try {
+            return await  model.recommend.destroy({where: {id}});
+        } catch (e) {
+            return null
+        }
     }
 }
 

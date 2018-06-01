@@ -25,6 +25,38 @@ class linkServer extends baseServer {
         }
         return result;
     }
+
+    async getById(id) {
+        try {
+            return await model.link.findOne({where: {id}})
+        } catch (e) {
+            return null;
+        }
+    }
+
+    async add(obj) {
+        try {
+            return await  model.link.create(obj);
+        } catch (e) {
+            return null
+        }
+    }
+
+    async update(params, id) {
+        try {
+            return await  model.link.update(params, {where: {id}});
+        } catch (e) {
+            return null
+        }
+    }
+
+    async deleteById(id) {
+        try {
+            return await  model.link.destroy({where: {id}});
+        } catch (e) {
+            return null
+        }
+    }
 }
 
 module.exports = new linkServer();

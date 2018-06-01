@@ -1,6 +1,6 @@
-const model = require('../middleware/model')
+const model = require('../middleware/model');
 const baseServer = require('./baseServer');
-const templateServer = require('./templateServer')
+const templateServer = require('./templateServer');
 
 // calcData(result),定义映射规则
 class articleServer extends baseServer {
@@ -53,10 +53,12 @@ class articleServer extends baseServer {
      * 获取文章列表
      * @returns {Promise<*>}
      */
-    async getDataListAndCount() {
+    async getDataListAndCount(arg) {
+        let options = this.filterParams(arg);
         let result;
         try {
             result = await model.article.findAndCountAll({
+                ...options,
                 order: [
                     ['createdAt', "DESC"]
                 ]
@@ -73,11 +75,19 @@ class articleServer extends baseServer {
      * @param id
      * @returns {Promise<Array>}
      */
-    async getContentByArticleId(id) {
+    async getContentByArticleId(article_id) {
         try {
-            return await model.article_content.find({where: {id: id}})
+            return await model.article_content.find({where: {article_id: article_id}})
         } catch (e) {
             return []
+        }
+    }
+
+    async getContentByContentId(id) {
+        try {
+            return await model.article_content.find({where: {id}})
+        } catch (e) {
+            return null
         }
     }
 
@@ -88,6 +98,15 @@ class articleServer extends baseServer {
      */
     async getFullArticleByIndex(keyWord) {
         return await  this.getFullArticle({}, keyWord)
+    }
+
+    /**
+     * 获取文章id为article的文章
+     * @param keyWord
+     * @returns {Promise<{}>}
+     */
+    async getFullArticleById(id) {
+        return await  this.getDataListWithTagCount({query: {id}})
     }
 
     /**
@@ -159,6 +178,67 @@ class articleServer extends baseServer {
             return await model.click.findAndCountAll()
         } catch (e) {
             return {rows: [], count: 0}
+        }
+    }
+
+    /**
+     * 增加文章基本信息
+     * @returns {Promise<void>}
+     */
+    async addBasicInfo(obj, key_word) {
+        const data = new Date();
+        let index = `${data.getFullYear()}/${data.getMonth() + 1}/${data.getDate()}/${key_word}`;
+        try {
+            return await model.article.create({
+                ...obj,
+                index
+            });
+        } catch (e) {
+            return false;
+        }
+    }
+
+    /**
+     * 更新文章基本信息
+     * @returns {Promise<void>}
+     */
+    async updateBasicInfo(obj, id) {
+        try {
+            return await  model.article.update(obj, {where: {id}});
+        } catch (e) {
+            return null
+        }
+    }
+
+    async deleteById(id) {
+        try {
+            return await  model.article.destroy({where: {id}});
+        } catch (e) {
+            return null
+        }
+    }
+
+    async createContent(obj) {
+        try {
+            return await model.article_content.create(obj)
+        } catch (e) {
+            return null
+        }
+    }
+
+    async updateContent(obj, id) {
+        try {
+            return await model.article_content.update(obj, {where: {id}});
+        } catch (e) {
+            return null
+        }
+    }
+
+    async deleteContent(id) {
+        try {
+            return await model.article_content.destroy({where: {id}});
+        } catch (e) {
+            return null
         }
     }
 }

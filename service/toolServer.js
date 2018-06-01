@@ -23,6 +23,38 @@ class toolServer extends baseServer {
         }
         return res;
     }
+
+    async getToolById(id) {
+        try {
+            return await model.tool.findOne({where: {id}})
+        } catch (e) {
+            return null;
+        }
+    }
+
+    async addTool(obj) {
+        try {
+            return await  model.tool.create(obj);
+        } catch (e) {
+            return null
+        }
+    }
+
+    async updateTool(obj, id) {
+        try {
+            return await  model.tool.update(obj, {where: {id}});
+        } catch (e) {
+            return null
+        }
+    }
+
+    async deleteToolnById(id) {
+        try {
+            return await  model.tool.destroy({where: {id}});
+        } catch (e) {
+            return null
+        }
+    }
 }
 
 module.exports = new toolServer();
