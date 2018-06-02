@@ -1,6 +1,7 @@
 const articleServer = require("../../../service/articleServer");
 const tagServer = require("../../../service/tagServer");
 const templateServer = require("../../../service/templateServer");
+const albumServer = require("../../../service/albumServer");
 const formatResponse = require("../../../common/formatResponse");
 
 class articleManage {
@@ -190,6 +191,37 @@ class articleManage {
             ctx.body = formatResponse.error("not exists")
         }
     }
+
+
+    async getArticleThroughAlbumList(ctx) {
+        const result = await albumServer.getArticlesThroughAlbum(Number(ctx.query.album_id));
+        if (result) {
+            ctx.body = formatResponse.success(result)
+        } else {
+            ctx.body = formatResponse.error("not exists")
+        }
+    }
+
+    async addAlbum(ctx) {
+        const {article_id, album_id} = ctx.request.body;
+        const result = await albumServer.addAlbumForArticle({article_id, album_id});
+        if (result) {
+            ctx.body = formatResponse.success(result)
+        } else {
+            ctx.body = formatResponse.error("not exists")
+        }
+    }
+
+    async deleteArticleAlbum(ctx) {
+        const result = await albumServer.removeAlbumForArticle(Number(ctx.request.body.id));
+        if (result) {
+            ctx.body = formatResponse.success(result)
+        } else {
+            ctx.body = formatResponse.error("not exists")
+        }
+    }
+
+
 }
 
 module.exports = new articleManage();
