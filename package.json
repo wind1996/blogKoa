@@ -7,11 +7,12 @@
     "dev": "./node_modules/.bin/nodemon bin/www",
     "prd": "pm2 start bin/www",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start_dev": "NODE_ENV=develop node bin/www",
+    "start_dev": "NODE_ENV=dev node bin/www",
     "superstart": "supervisor bin/www"
   },
   "dependencies": {
     "debug": "^2.6.3",
+    "jsonwebtoken": "^8.2.1",
     "koa": "^2.2.0",
     "koa-bodyparser": "^3.2.0",
     "koa-convert": "^1.2.0",
