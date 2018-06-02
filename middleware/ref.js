@@ -21,9 +21,11 @@ model.relationship_html.belongsTo(model.article);
 model.html.hasMany(model.relationship_html);
 model.relationship_html.belongsTo(model.html);
 
-
 model.article.hasOne(model.click);
 model.click.belongsTo(model.article);
 
 model.article.hasOne(model.like);
 model.like.belongsTo(model.article);
+
+model.administrator.hasMany(model.logIn);
+model.logIn.belongsTo(model.administrator);
